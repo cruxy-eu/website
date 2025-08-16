@@ -1,0 +1,7 @@
+@font-face {
+    font-family: Montserrat;
+    font-style:normal;
+    font-weight:500;
+    font-display:fallback;
+    src: url('/fonts/Montserrat-500.woff2') format('woff2')
+;}

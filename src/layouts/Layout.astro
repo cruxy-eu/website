@@ -1,0 +1,35 @@
+---
+interface LayoutProps {
+	header?: HeaderConfig;
+}
+
+const { header: headerConfig = {
+	instantSticky: true
+} }: LayoutProps = Astro.props;
+
+import {
+	CommonHead,
+	Header,
+	HeaderConfig,
+	Footer
+} from '@cruxy/components';
+
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>cruxy</title>
+		<meta name="generator" content={Astro.generator} />
+		<CommonHead />
+	</head>
+	<body>
+		<Header
+			instantSticky={headerConfig.instantSticky}
+		/>
+		<main>
+			<slot  />
+		</main>
+		<Footer />
+	</body>
+</html>
+

@@ -1,0 +1,110 @@
+---
+
+interface Props {
+    words: string[];
+}
+
+const {
+    words
+} = Astro.props as Props;
+
+const firstWord = words[0] || "create";
+
+---
+
+<div class="typewriter">
+    <span id="typed-text" class="typed-text">create</span>
+</div>
+
+<style>
+    .typewriter {
+        text-align: left;
+    }
+
+    .typed-text {
+        position: relative; /* Needed for the pseudo-element caret */
+        white-space: nowrap;
+    }
+
+    /* The new caret, created with a pseudo-element for better height control */
+    .typed-text::after {
+        content: '';
+        position: absolute;
+        width: 0.15em; /* Thickness of the caret */
+        height: 0.8em;  /* Height of the caret, matches the text */
+        background-color: #f1f1f1;
+        animation: blink 1.1s step-end infinite;
+        /* Adjust vertical alignment if needed */
+        bottom: 0.1em;
+        margin-left: 0.1em;
+    }
+
+    .static-prefix {
+        margin-right: 0.25em;
+        white-space: nowrap;
+    }
+
+
+    @keyframes blink {
+        from, to { background-color: transparent; }
+        50% { background-color: #f1f1f1; }
+    }
+</style>
+
+<script>
+    const typedTextSpan = document.getElementById("typed-text");
+    const words = ["create", "craft", "code", "climb"];
+    const typingDelay = 150;
+    const deletingDelay = 100;
+    const newWordDelay = 2000;
+
+    let wordIndex = 0;
+    let charIndex = words[0].length;
+    let isDeleting = true;
+
+    function findCommonPrefixLength(str1, str2) {
+        let i = 0;
+        while (true) {
+            if (i >= str1.length) { break; }
+            if (i >= str2.length) { break; }
+            if (str1[i] !== str2[i]) { break; }
+            i++;
+        }
+        return i;
+    }
+
+    function type() {
+        if (isDeleting) {
+            const currentWord = words[wordIndex];
+            const nextWord = words[(wordIndex + 1) % words.length];
+            const prefixLength = findCommonPrefixLength(currentWord, nextWord);
+
+            if (charIndex > prefixLength) {
+                // Still have characters to delete
+                typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(type, deletingDelay);
+            } else {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                setTimeout(type, typingDelay);
+            }
+        } else {
+            const wordToType = words[wordIndex];
+            if (charIndex < wordToType.length) {
+                // Still have characters to type
+                typedTextSpan.textContent = wordToType.substring(0, charIndex + 1);
+                charIndex++;
+                setTimeout(type, typingDelay);
+            } else {
+                isDeleting = true;
+                setTimeout(type, newWordDelay);
+            }
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        if (words.length) {
+            setTimeout(type, newWordDelay);
+        }
+    });
+</script>

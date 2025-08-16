@@ -1,0 +1,27 @@
+---
+interface Props {
+    fit?: "cover" | "contain";
+}
+const {
+    fit,
+    ...props
+}: Props = Astro.props;
+---
+<section class:list={[
+    fit ? `fit-${fit}` : "",
+    {...props}
+]}>
+    <slot />
+</section>
+
+<style>
+    section {
+        &.fit-cover {
+            height: 100vh;
+        }
+
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+</style>

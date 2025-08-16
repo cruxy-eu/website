@@ -1,0 +1,83 @@
+---
+import { Layout} from '@cruxy/layouts';
+import { HeaderConfig, Section, Hero, Typewriter, Gradient } from '@cruxy/components';
+const header: HeaderConfig = {
+	instantSticky: false
+}
+
+---
+
+<Layout header={header}>
+	<Hero>
+		<Section class="hero-section">
+			<div class="line first">
+				<span class="static-prefix">we</span>
+				<Typewriter
+					words={[
+						"create",
+						"craft",
+						"code",
+						"build",
+						"design"
+					]}  />
+			</div>
+			<div class="line second"><Gradient>cruxy</Gradient> things</div>
+			<div class="line third">for you</div>
+		</Section>
+	</Hero>
+</Layout>
+
+<style>
+
+	.hero-section {
+		display: flex;
+	}
+
+	.line {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		transition: all 0.3s ease-in-out;
+	}
+
+	@media (min-width: 769px) {
+		.hero-section {
+			flex-direction: row;
+			justify-content: left;
+			height: 100vh;
+			text-align: center;
+		}
+
+		.line {
+			display: flex;
+			flex-direction: row;
+			justify-content: left;
+			width: 100%;
+		}
+	}
+
+	@media (max-width: 768px) {
+		.hero-section {
+			justify-content: left;
+		}
+
+		.line.first {
+			justify-content: center;
+			flex-direction: row;
+		}
+
+		.line.second,
+		.line.third {
+			justify-content: center;
+			flex-direction: row;
+		}
+
+	}
+
+	.gradient-text {
+		background: linear-gradient(90deg, #ff6b6b, #f06595, #f8a5c2);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
+</style>

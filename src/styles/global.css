@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@layer reset, general-styling, containers;
+
+:root {
+    --cruxy--color--background-primary-100: #1d1229;
+    --cruxy--color--background-secondary-100: #06040c;
+    --cruxy--color--text-primary-100: #f1f1f1;
+    --cruxy--color--orange: #ff6900;
+
+    --cruxy--style--global--font-size: 16px;
+    --cruxy--style--global--font-family: 'Montserrat';
+    /*--cruxy--style--global--content-size: 1360px;*/
+    --cruxy--style--global--content-size: 70ch;
+    --cruxy--style--global--wide-size: 1920px;
+
+    --cruxy--header--height: 4rem;
+}
+
+@layer reset {
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    button {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+    }
+}
+
+@layer general-styling {
+    html {
+        color-scheme: dark light;
+        line-height: 1.15;
+        text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        font-family: var(--cruxy--style--global--font-family), sans-serif;
+        font-size: var(--cruxy--style--global--font-size);
+    }
+
+    body {
+        background-color: var(--cruxy--color--background-primary-100);
+        color: var(--cruxy--color--text-primary-100);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 700;
+        line-height: 1.5;
+        font-style: normal;
+    }
+
+    a {
+        -webkit-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+    }
+
+    a:hover {
+        color: var(--cruxy--color--orange);
+    }
+
+    main {
+        min-height: calc(100vh - var(--cruxy--header--height));
+    }
+
+}
+
+@layer containers {
+    main {
+        container: main / inline-size;
+    }
+}

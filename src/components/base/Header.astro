@@ -1,0 +1,94 @@
+---
+import CruxyLogo from "../logo/CruxyLogo.astro";
+interface HeaderConfig {
+    instantSticky?: boolean;
+}
+
+const {instantSticky = true}: HeaderConfig = Astro.props;
+---
+<header id="header" class:list={instantSticky ? 'instant-sticky' : ''}>
+    <div class="mask"></div>
+    <div class="container">
+        <a href="/" target="_self" rel="home" class="logo-link">
+            <CruxyLogo width="40px"/>
+        </a>
+        <h1 class="site-title">
+            <a href="/" target="_self" rel="home">cruxy</a>
+        </h1>
+        <h1>
+            <a href="/about" target="_self">about</a>
+        </h1>
+    </div>
+</header>
+
+<style>
+    header {
+        --header-font-size: 2rem;
+        --header-shrink-ratio: 0.6;
+
+        position: sticky;
+        height: var(--cruxy--header--height);
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+
+        &.instant-sticky {
+            margin-top: calc(var(--cruxy--header--height) * -1);
+        }
+    }
+
+    .container {
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        padding: 0 1rem 0 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2000;
+
+        font-size: var(--header-font-size);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .container {
+            transition: transform 0.05s linear;
+            transform-origin: left top;
+        }
+
+        header.scroll .container {
+            transform: scale(var(--header-shrink-ratio));
+
+            h1 {
+                display: none
+            }
+        }
+    }
+
+    .mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: 500;
+        background-color: var(--cruxy--color--background-primary-100);
+        mask-image: linear-gradient(to bottom, white -70%, transparent 75%);
+    }
+
+</style>
+
+<script>
+    const header = document.getElementById('header');
+    const scrollThreshold = 1;
+
+    // Attach the debounced function to the scroll event
+    window.addEventListener('scroll', function () {
+        const isScrolled = window.scrollY > scrollThreshold;
+        header.classList.toggle('scroll', isScrolled);
+    });
+</script>

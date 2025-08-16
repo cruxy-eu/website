@@ -1,0 +1,84 @@
+---
+import {Layout, LayoutProps} from '@cruxy/layouts';
+import {Cover, Section} from '@cruxy/components';
+import ecImg from '../assets/ec_full.webp';
+const layout: LayoutProps = {
+    header: {
+        instantSticky: true
+    }
+}
+---
+<Layout {...layout}>
+    <Cover img={ecImg} overlay="dark">
+        <section>
+            <p class="left bg-dark">
+                Hello, we are Anne and Tom.
+            </p>
+            <p class="right bg-dark">
+                We live and work remotely in our van.
+            </p>
+            </section>
+    </Cover>
+
+    <Cover img={ecImg}>
+        <Section>
+            <p class="left bg-dark">We live and work remotely in our van.</p>
+        </Section>
+    </Cover>
+</Layout>
+
+<style>
+    section {
+        --border-radius: 1rem;
+        --smaller-border-radius: 0.25rem;
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            [left-start grid-start]
+                1rem
+            [right-end]
+                calc(100vw - 2rem)
+            [left-end]
+                1rem
+            [grid-end right-start]
+    }
+
+    p {
+        background-color: red;
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+        margin-bottom: 1rem;
+        text-wrap: pretty;
+    }
+
+    .left {
+        text-align: left;
+        border-radius: 0 var(--smaller-border-radius) var(--border-radius) 0;
+        grid-column: left-start / left-end
+    }
+
+    .right {
+        text-align: left;
+        border-radius: var(--smaller-border-radius) 0 0 var(--border-radius) ;
+        grid-column: right-end / right-start;
+        align-self: start;
+        justify-self: end;
+    }
+
+    .bg-dark {
+        width: fit-content;
+        padding: 1rem;
+        display: block;
+        background-color: var(--cruxy--color--background-primary-100);
+        backdrop-filter: drop-shadow(
+            0 0 0.5rem rgba(0, 0, 0, 0.5)
+        );
+    }
+    .bg-dark:hover {
+        background-color: var(--cruxy--color--background-secondary-100);
+    }
+
+</style>
