@@ -1,13 +1,9 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import globalCss from '../../styles/global.css';
-import fonts from '../../styles/fonts.css';
+import '../../styles/global.css';
+import '../../styles/fonts.css';
 ---
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="preload" href={globalCss} as="style">
-<link rel="stylesheet" href={globalCss}>
-<link rel="preload" href={fonts} as="style">
-<link rel="stylesheet" href={fonts}>
 <ClientRouter />
