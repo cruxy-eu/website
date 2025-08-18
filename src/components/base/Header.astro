@@ -61,7 +61,7 @@ const {instantSticky = true}: HeaderConfig = Astro.props;
             transform-origin: left top;
         }
 
-        header.scroll .container {
+        header[data-scroll=true] .container {
             transform: scale(var(--header-shrink-ratio));
 
             h1 {
@@ -85,12 +85,18 @@ const {instantSticky = true}: HeaderConfig = Astro.props;
 </style>
 
 <script>
-    const header = document.getElementById('header');
-    const scrollThreshold = 1;
+    const setHeaderScroll = () => {
+        const header = document.getElementById('header');
+        if (!header) {
+            return;
+        }
+        header.setAttribute('data-scroll', window.scrollY > 1 ? 'true' : 'false');
+    }
 
-    // Attach the debounced function to the scroll event
-    window.addEventListener('scroll', function () {
-        const isScrolled = window.scrollY > scrollThreshold;
-        header.classList.toggle('scroll', isScrolled);
-    });
+    (() => {
+        document.addEventListener('scroll', setHeaderScroll);
+        document.addEventListener('astro:after-swap', () => {
+            window.addEventListener('scroll', setHeaderScroll);
+        });
+    })();
 </script>
