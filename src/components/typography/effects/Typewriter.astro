@@ -24,16 +24,19 @@ const firstWord = words.length > 0 ? words[0] : "";
     .typed-text {
         position: relative; /* Needed for the pseudo-element caret */
         white-space: nowrap;
+        min-height: 1.2em;;
+        display: inline-block;
     }
 
     .typed-text::after {
         content: '';
         position: absolute;
         width: 0.15em;
-        height: 0.8em;
+        height: 0.7em;
         background-color: var(--cruxy--color--text-primary-100);
         animation: blink 1.1s step-end infinite;
-        bottom: 0.1em;
+        bottom: 0.21em;
+        left: 100%;
         margin-left: 0.1em;
     }
 
