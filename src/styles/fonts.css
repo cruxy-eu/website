@@ -3,5 +3,14 @@
     font-style:normal;
     font-weight:500;
     font-display:fallback;
-    src: url('/fonts/Montserrat-500.woff2') format('woff2')
-;}
+    src: url('/fonts/Montserrat-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: Brygada;
+    font-style:normal;
+    font-weight:500;
+    font-display:fallback;
+    src: url('/fonts/Brygada.ttf') format('truetype');
+}
+

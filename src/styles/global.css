@@ -1,19 +1,62 @@
 @import "tailwindcss";
-@layer reset, general-styling, containers;
+
+@layer reset, general-styling, containers, effects;
 
 :root {
-    --cruxy--color--background-primary-100: #1d1229;
-    --cruxy--color--background-secondary-100: #06040c;
-    --cruxy--color--text-primary-100: #f1f1f1;
+    --cruxy--color--white: #f1f1f1;
+    --cruxy--color--black: #1d1229;
     --cruxy--color--orange: #ff6900;
 
     --cruxy--style--global--font-size: 16px;
     --cruxy--style--global--font-family: 'Montserrat';
-    /*--cruxy--style--global--content-size: 1360px;*/
-    --cruxy--style--global--content-size: 70ch;
+    --cruxy--style--global--content-size: 1360px;
     --cruxy--style--global--wide-size: 1920px;
 
+    --cruxy--breakpoint--sm: 640px;
+    --cruxy--breakpoint--md: 768px;
+
     --cruxy--header--height: 4rem;
+
+    --cruxy--spacer--unit: 1.25rem;
+    --cruxy--background--grid--size: 2.5rem;
+
+    --cruxy--font--serif: 'Brygada', serif;
+
+    --accent1: #ff6f61;
+    --accent2: #6c5ce7;
+    --accent3: #00cec9;
+
+    --cruxy--effect--fade-up--initial-delay: 0.5s;
+    --cruxy--effect--fade-up--interval: 0.3s;
+    --cruxy--effect--fade-up--duration: 1s;
+}
+
+@media (prefers-color-scheme: light) { /* Actually the dark mode */
+    :root {
+        --cruxy--color--background-primary-100: var(--cruxy--color--white);
+        --cruxy--color--background-secondary-100: #06040c;
+        --cruxy--color--text-primary-100: #f1f1f1;
+
+        --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.2);
+
+        --cruxy--background--grid--color: rgba(255, 255, 255, 0.05);
+        --cruxy--background--grid--bg-color: #282828;
+        --cruxy--background--opaque--bg-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media (prefers-color-scheme: dark) { /* Actually the light mode */
+    :root {
+        --cruxy--color--background-primary-100: #f1f1f1;
+        --cruxy--color--background-secondary-100: #06040c;
+        --cruxy--color--text-primary-100: #1d1229;
+
+        --cruxy--color--border-primary-100: rgba(0, 0, 0, 0.05);
+
+        --cruxy--background--grid--color: rgba(0, 0, 0, 0.05);
+        --cruxy--background--grid--bg-color: #fff;
+        --cruxy--background--opaque--bg-color: #fff;
+    }
 }
 
 @layer reset {
@@ -76,6 +119,101 @@
 
 @layer containers {
     main {
-        container: main / inline-size;
+        container-type: inline-size;
+        container-name: main;
     }
 }
+
+@layer effects {
+    .glass {
+        background-color: var(--cruxy--color--background-primary-100) 80;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(1px); /* For Safari browser support */
+        mix-blend-mode: hard-light;
+    }
+
+    .glass::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+
+        margin: -1px;
+        border-radius: inherit;
+
+        background: rgba(255, 255, 255, 0.25);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .bg-grid.lines {
+        background-color: var(--cruxy--background--grid--bg-color);
+        background-image:
+                linear-gradient(var(--cruxy--background--grid--color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cruxy--background--grid--color) 1px, transparent 1px);
+        background-size: var(--cruxy--background--grid--size) var(--cruxy--background--grid--size);
+    }
+
+    .bg-grid.dotted {
+        background-color: var(--cruxy--background--grid--bg-color);
+        background-image: radial-gradient(circle, var(--cruxy--background--grid--color) 1px, transparent 1px);
+        background-size: var(--cruxy--background--grid--size) var(--cruxy--background--grid--size);
+    }
+
+    .bg-opaque {
+        background-color: var(--cruxy--background--opaque--bg-color);
+    }
+
+    .drop-shadow {
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+    }
+
+    .fade-up-1 {
+        opacity: 0;
+        animation: 0.3s fadeUp forwards;
+    }
+    .fade-up-2 {
+        opacity: 0;
+        animation: 0.6s fadeUp forwards;
+    }
+    .fade-up-3 {
+        opacity: 0;
+        animation: 0.9s fadeUp forwards;
+    }
+    .fade-up-4 {
+        opacity: 0;
+        animation: 1.2s fadeUp forwards;
+    }
+    .fade-up-5 {
+        opacity: 0;
+        animation: 1.5s fadeUp forwards;
+    }
+
+    .bg-side-fade {
+        mask-image:
+                linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+
+    }
+
+    @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translateY(20%);
+            transition-timing-function: linear;
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .blob {position: absolute;border-radius: 50%;filter: blur(60px);opacity: 0.2;z-index: 0;}
+    .blob1 {background: var(--accent1);width: 400px;height: 400px;top: -100px;left: -150px;}
+    .blob2 {background: var(--accent2);width: 300px;height: 300px;bottom: 100px;right: -100px;}
+    .blob3 {background: var(--accent3);width: 250px;height: 250px;top: 500px;right: 200px;}
+
+}
+

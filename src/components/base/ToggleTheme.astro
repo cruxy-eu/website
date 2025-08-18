@@ -1,0 +1,12 @@
+---
+import { Icon } from 'astro-icon/components';
+
+---
+<button
+    on:click={() => {
+        document.documentElement.classList.toggle('dark');
+        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    }}
+    >
+    <Icon name="mdi:moon" />
+</button>

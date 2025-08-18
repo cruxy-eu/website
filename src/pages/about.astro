@@ -2,6 +2,7 @@
 import {Layout, LayoutProps} from '@cruxy/layouts';
 import {Cover, Section} from '@cruxy/components';
 import ecImg from '../assets/ec_full.webp';
+import ServicesBar from "../components/landing/ServicesBar.astro";
 const layout: LayoutProps = {
     header: {
         instantSticky: true
@@ -9,21 +10,23 @@ const layout: LayoutProps = {
 }
 ---
 <Layout {...layout}>
-    <Cover img={ecImg} overlay="dark">
+    <Cover img={ecImg}>
         <section>
-            <p class="left bg-dark">
+            <p class="bubble left glass">
                 Hello, we are Anne and Tom.
             </p>
-            <p class="right bg-dark">
+            <p class="bubble right glass">
                 We live and work remotely in our van.
             </p>
             </section>
     </Cover>
 
     <Cover img={ecImg}>
-        <Section>
-            <p class="left bg-dark">We live and work remotely in our van.</p>
-        </Section>
+        <section>
+            <p class="half left glass">
+                We provide digital services to clients around the world, specializing in web development, design, and digital marketing.
+            </p>
+        </section>
     </Cover>
 </Layout>
 
@@ -37,48 +40,55 @@ const layout: LayoutProps = {
         display: grid;
 
         grid-template-columns:
-            [left-start grid-start]
+            [grid-start]
                 1rem
-            [right-end]
-                calc(100vw - 2rem)
-            [left-end]
+            [left]
+                calc(50vw - 1rem)
+            [middle]
+                calc(50vw - 1rem)
+            [right]
                 1rem
-            [grid-end right-start]
+            [grid-end]
     }
 
     p {
-        background-color: red;
         font-size: 1.5rem;
         line-height: 1.5rem;
         margin-bottom: 1rem;
         text-wrap: pretty;
     }
 
-    .left {
-        text-align: left;
-        border-radius: 0 var(--smaller-border-radius) var(--border-radius) 0;
-        grid-column: left-start / left-end
-    }
-
-    .right {
-        text-align: left;
-        border-radius: var(--smaller-border-radius) 0 0 var(--border-radius) ;
-        grid-column: right-end / right-start;
-        align-self: start;
-        justify-self: end;
-    }
-
-    .bg-dark {
+    .bubble {
         width: fit-content;
         padding: 1rem;
         display: block;
-        background-color: var(--cruxy--color--background-primary-100);
-        backdrop-filter: drop-shadow(
-            0 0 0.5rem rgba(0, 0, 0, 0.5)
-        );
+        text-align: left;
+
+        &.left {
+            border-radius: 0 var(--smaller-border-radius) var(--border-radius) 0;
+            grid-column: grid-start / right
+        }
+
+        &.right {
+            border-radius: var(--smaller-border-radius) 0 0 var(--border-radius);
+            grid-column: left / grid-end;
+            align-self: start;
+            justify-self: end;
+        }
     }
-    .bg-dark:hover {
-        background-color: var(--cruxy--color--background-secondary-100);
+
+    .half.left {
+        margin-top: 1rem;
+        grid-column: left / middle;
+        align-self: center;
+        transition: all 0.3s linear;
+        padding: 1rem;
+
+        @media (max-width: 70ch) {
+            // blur what is behind
+            backdrop-filter: blur(0.5rem);
+            grid-column: left / right;
+        }
     }
 
 </style>

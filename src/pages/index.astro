@@ -1,16 +1,23 @@
 ---
-import { Layout} from '@cruxy/layouts';
-import { HeaderConfig, Section, Hero, Typewriter, Gradient } from '@cruxy/components';
+import { Layout, } from '@cruxy/layouts';
+import { Cover, Spacer, HeaderConfig, Hero, Typewriter, Gradient, Definition } from '@cruxy/components';
+import { ServicesBar } from '@cruxy/components/landing';
 const header: HeaderConfig = {
-	instantSticky: false
+	instantSticky: true
 }
+import ecImg from '../assets/ec_full.webp';
 
 ---
-
 <Layout header={header}>
-	<Hero>
-		<Section class="hero-section">
-			<div class="line first">
+	<section class="bg-grid lines bg-side-fade">
+		<Spacer size="xl" />
+
+		<ServicesBar />
+
+		<Hero class="hero-section">
+			<Spacer size="xl" />
+
+			<div class="line fade-up-2">
 				<span class="static-prefix">we</span>
 				<Typewriter
 					words={[
@@ -21,63 +28,34 @@ const header: HeaderConfig = {
 						"design"
 					]}  />
 			</div>
-			<div class="line second"><Gradient>cruxy</Gradient> things</div>
-			<div class="line third">for you</div>
-		</Section>
-	</Hero>
+			<div class="line fade-up-3"><Gradient>cruxy</Gradient> things</div>
+			<div class="line fade-up-4">for you</div>
+
+			<Spacer size="xl" />
+		</Hero>
+
+	</section>
+
+	<section class="bg-opaque flex flex-col justify-center items-center">
+		<Spacer size="xl" />
+		<Definition />
+		<Spacer size="xl" />
+	</section>
+
+	<section class="bg-grid dotted justify-center">
+		<Cover img={ecImg}>
+
+		</Cover>
+	</section>
+
 </Layout>
 
 <style>
-
-	.hero-section {
-		display: flex;
-	}
-
 	.line {
 		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-		transition: all 0.3s ease-in-out;
-	}
-
-	@media (min-width: 769px) {
-		.hero-section {
-			flex-direction: row;
-			justify-content: left;
-			height: 100vh;
-			text-align: center;
-		}
-
-		.line {
-			display: flex;
-			flex-direction: row;
-			justify-content: left;
-			width: 100%;
-		}
-	}
-
-	@media (max-width: 768px) {
-		.hero-section {
-			justify-content: left;
-		}
-
-		.line.first {
-			justify-content: center;
-			flex-direction: row;
-		}
-
-		.line.second,
-		.line.third {
-			justify-content: center;
-			flex-direction: row;
-		}
-
-	}
-
-	.gradient-text {
-		background: linear-gradient(90deg, #ff6b6b, #f06595, #f8a5c2);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
+		flex-direction: row;
+		gap: 1rem;
+		justify-content: center;
 	}
 
 </style>

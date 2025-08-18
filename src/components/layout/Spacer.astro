@@ -1,0 +1,36 @@
+---
+interface Props {
+  size?: 'small' | 'medium' | 'large' | 'xl'
+}
+
+const { size = 'medium' }: Props = Astro.props;
+
+---
+<style>
+    .block {
+        display: block;
+        height: var(--spacer-height);
+    }
+
+    :root {
+        --spacer-height: var(--cruxy--spacer--unit);
+    }
+
+    .small {
+        --spacer-height: calc(var(--cruxy--spacer--unit) * 0.5);
+    }
+
+    .medium {
+        --spacer-height: var(--cruxy--spacer--unit);
+    }
+
+    .large {
+        --spacer-height: calc(var(--cruxy--spacer--unit) * 2);
+    }
+
+    .xl {
+        --spacer-height: calc(var(--cruxy--spacer--unit) * 4);
+    }
+</style>
+
+<div class={`block ${size}`}></div>

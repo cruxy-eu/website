@@ -1,10 +1,9 @@
 ---
 import { Section } from '@cruxy/components';
-import { Cover } from '@cruxy/components';
 ---
 
 <div class="hero">
-    <Section fit="cover">
+    <Section>
         <slot />
     </Section>
 </div>
@@ -13,9 +12,9 @@ import { Cover } from '@cruxy/components';
     .hero {
         position: relative;
         overflow: hidden;
-        font-size: 4rem;
+        font-size: 5rem;
         font-weight: 700;
-        line-height: 1.1;
+        line-height: 1.2;
     }
 
     .hero::after {
