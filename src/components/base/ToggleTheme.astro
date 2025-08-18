@@ -1,12 +1,49 @@
 ---
 import { Icon } from 'astro-icon/components';
 
+interface Props {
+    theme: 'light' | 'dark';
+}
+
 ---
-<button
-    on:click={() => {
-        document.documentElement.classList.toggle('dark');
-        localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
-    }}
-    >
-    <Icon name="mdi:moon" />
+<button class="icon-only"
+    onclick="togglePreference()">
+    <Icon name="mdi:white-balance-sunny" />
+    <span class="sr-only">
+        Toggle theme
+    </span>
 </button>
+
+<script is:inline>
+    const storageKey = 'theme-preference';
+
+    const getColorPreference = () => {
+        let preference = localStorage.getItem(storageKey);
+
+        if (!preference) {
+            preference = window.matchMedia('(prefers-color-scheme: dark)').matches
+                ? 'dark'
+                : 'light';
+        }
+
+        return preference;
+    }
+
+    const setPreference = (themeName) => {
+        localStorage.setItem(storageKey, themeName)
+
+        document.firstElementChild
+            .setAttribute('data-theme', themeName);
+    }
+
+    const togglePreference = () => {
+        console.log('toggling theme preference');
+        setPreference(getColorPreference() === 'dark' ? 'light' : 'dark');
+    }
+
+    (() => {
+        const theme = getColorPreference();
+
+        setPreference(theme);
+    })();
+</script>

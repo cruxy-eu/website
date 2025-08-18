@@ -4,7 +4,9 @@
 
 :root {
     --cruxy--color--white: #f1f1f1;
-    --cruxy--color--black: #1d1229;
+    --cruxy--color--black: #000;
+
+    --cruxy--color--dark-purple: #1d1229;
     --cruxy--color--orange: #ff6900;
 
     --cruxy--style--global--font-size: 16px;
@@ -31,31 +33,39 @@
     --cruxy--effect--fade-up--duration: 1s;
 }
 
-@media (prefers-color-scheme: light) { /* Actually the dark mode */
+:root[data-theme="dark"], .theme-dark {
+    --cruxy--color--background-primary-100: var(--cruxy--color--black);
+    --cruxy--color--background-secondary-100: #06040c;
+    --cruxy--color--text-primary-100: #f1f1f1;
+
+    --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.2);
+
+    --cruxy--background--grid--color: rgba(255, 255, 255, 0.05);
+    --cruxy--background--grid--bg-color: rgba(0, 0, 0, 0.9);
+    --cruxy--background--opaque--bg-color: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"], .theme-light {
+    --cruxy--color--background-primary-100: var(--cruxy--color--white);
+    --cruxy--color--background-secondary-100: #06040c;
+    --cruxy--color--text-primary-100: #1d1229;
+
+    --cruxy--color--border-primary-100: rgba(0, 0, 0, 0.05);
+
+    --cruxy--background--grid--color: rgba(0, 0, 0, 0.05);
+    --cruxy--background--grid--bg-color: #fff;
+    --cruxy--background--opaque--bg-color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
     :root {
-        --cruxy--color--background-primary-100: var(--cruxy--color--white);
-        --cruxy--color--background-secondary-100: #06040c;
-        --cruxy--color--text-primary-100: #f1f1f1;
-
-        --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.2);
-
-        --cruxy--background--grid--color: rgba(255, 255, 255, 0.05);
-        --cruxy--background--grid--bg-color: #282828;
-        --cruxy--background--opaque--bg-color: rgba(0, 0, 0, 0.1);
+        @extend .theme-dark;
     }
 }
 
-@media (prefers-color-scheme: dark) { /* Actually the light mode */
+@media (prefers-color-scheme: light) {
     :root {
-        --cruxy--color--background-primary-100: #f1f1f1;
-        --cruxy--color--background-secondary-100: #06040c;
-        --cruxy--color--text-primary-100: #1d1229;
-
-        --cruxy--color--border-primary-100: rgba(0, 0, 0, 0.05);
-
-        --cruxy--background--grid--color: rgba(0, 0, 0, 0.05);
-        --cruxy--background--grid--bg-color: #fff;
-        --cruxy--background--opaque--bg-color: #fff;
+        @extend .theme-light;
     }
 }
 
@@ -195,7 +205,6 @@
     .bg-side-fade {
         mask-image:
                 linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-
     }
 
     @keyframes fadeUp {
