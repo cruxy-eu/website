@@ -8,12 +8,12 @@ const {
     words
 } = Astro.props as Props;
 
-const firstWord = words[0] || "create";
+const firstWord = words.length > 0 ? words[0] : "";
 
 ---
 
 <div class="typewriter">
-    <span id="typed-text" class="typed-text">create</span>
+    <span id="typed-text" class="typed-text">{firstWord}</span>
 </div>
 
 <style>
@@ -26,15 +26,13 @@ const firstWord = words[0] || "create";
         white-space: nowrap;
     }
 
-    /* The new caret, created with a pseudo-element for better height control */
     .typed-text::after {
         content: '';
         position: absolute;
-        width: 0.15em; /* Thickness of the caret */
-        height: 0.8em;  /* Height of the caret, matches the text */
+        width: 0.15em;
+        height: 0.8em;
         background-color: #f1f1f1;
         animation: blink 1.1s step-end infinite;
-        /* Adjust vertical alignment if needed */
         bottom: 0.1em;
         margin-left: 0.1em;
     }
@@ -53,7 +51,7 @@ const firstWord = words[0] || "create";
 
 <script>
     const typedTextSpan = document.getElementById("typed-text");
-    const words = ["create", "craft", "code", "climb"];
+    const words = ["create", "craft", "code", "climb", "design", "develop"];
     const typingDelay = 150;
     const deletingDelay = 100;
     const newWordDelay = 2000;
