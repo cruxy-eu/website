@@ -38,11 +38,12 @@
     --cruxy--color--background-secondary-100: #06040c;
     --cruxy--color--text-primary-100: #f1f1f1;
 
-    --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.2);
+    --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.05);
 
     --cruxy--background--grid--color: rgba(255, 255, 255, 0.05);
     --cruxy--background--grid--bg-color: rgba(0, 0, 0, 0.9);
     --cruxy--background--opaque--bg-color: rgba(0, 0, 0, 0.9);
+    --cruxy--background--glass--bg-color: rgba(0, 0, 0, 0.75);
 }
 
 :root[data-theme="light"], .theme-light {
@@ -55,6 +56,7 @@
     --cruxy--background--grid--color: rgba(0, 0, 0, 0.05);
     --cruxy--background--grid--bg-color: #fff;
     --cruxy--background--opaque--bg-color: #fff;
+    --cruxy--background--glass--bg-color: rgba(255, 255, 255, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -154,7 +156,7 @@
         margin: -1px;
         border-radius: inherit;
 
-        background: rgba(255, 255, 255, 0.25);
+        background: var(--cruxy--background--glass--bg-color);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
