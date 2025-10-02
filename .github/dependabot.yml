@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: cron
+      cronjob: "0 9 * * 1"
+    cooldown:
+      semver-major-days: 7
+      semver-minor-days: 7
+      semver-patch-days: 1
+      include:
+        - "*"
