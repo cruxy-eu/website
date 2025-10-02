@@ -2,16 +2,23 @@
   "name": "cruxy-website",
   "type": "module",
   "version": "0.0.1",
+  "engines": {
+    "pnpm": ">=10.16.0",
+    "npm": "please-use-pnpm",
+    "yarn": "please-use-pnpm"
+  },
+  "engineStrict": true,
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.12.9",
+    "astro": "^5.14.1",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.11"
   }

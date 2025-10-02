@@ -1,0 +1,2 @@
+# Wait at least one day to avoid supply-chain attacks
+minimumReleaseAge: 1440
