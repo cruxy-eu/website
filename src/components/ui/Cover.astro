@@ -1,38 +1,29 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from "astro:assets";
 
 interface CoverProps {
     img?: string;
     alt?: string;
     title?: string;
-    overlay?: 'dark' | 'light' | 'none';
+    overlay?: "dark" | "light" | "none";
 }
 
 let {
-    img = '',
-    alt = '',
-    title = '',
-    overlay = 'none',
+    img = "",
+    alt = "",
+    title = "",
+    overlay = "none",
     ...props
 }: CoverProps = Astro.props;
 ---
 
-<div class="cover" {...props}>
-    <Image
-            src={img}
-            alt={alt}
-            title={title}
-            fetchpriority="high"
-    />
-    {overlay && overlay !== 'none' && (
-        <div class={`overlay ${overlay}`}>
-        </div>
-    )}
+<section class="cover" {...props}>
+    <Image src={img} alt={alt} title={title} fetchpriority="high" />
+    {overlay && overlay !== "none" && <div class={`overlay ${overlay}`} />}
     <slot />
-</div>
+</section>
 
 <style is:global>
-
     .cover {
         --image-index: -2;
         --overlay-index: -1;
@@ -79,5 +70,4 @@ let {
             }
         }
     }
-
 </style>

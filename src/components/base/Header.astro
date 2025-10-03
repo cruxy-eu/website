@@ -1,17 +1,26 @@
 ---
-import CruxyLogo from "../logo/CruxyLogo.astro";
+import type { HTMLAttributes } from "astro/types";
+
+import CruxyLogo from "../ui/CruxyLogo.astro";
 import ToggleTheme from "./ToggleTheme.astro";
-interface HeaderConfig {
+interface HeaderConfig extends HTMLAttributes<"header"> {
     instantSticky?: boolean;
 }
 
-const {instantSticky = true}: HeaderConfig = Astro.props;
+const { instantSticky = true } = Astro.props as HeaderConfig;
+
+const baseStyle = "text-4xl sticky w-full top-0 left-0 z-1000";
+
+const stickyStyle = instantSticky ? "instant-sticky" : "";
 ---
-<header id="header" class:list={instantSticky ? 'instant-sticky' : ''}>
-    <div class="mask"></div>
-    <div class="container">
+
+<header id="header" class:list={[baseStyle, stickyStyle]}>
+    <div class="mask absolute top-0 left-0 w-full h-full z-500 bg-mask"></div>
+    <div
+        class="container w-full h-full absolute top-0 left-4 flex flex-row gap-4 items-center pt-4 z-2000"
+    >
         <a href="/" target="_self" rel="home" class="logo-link">
-            <CruxyLogo width="40px"/>
+            <CruxyLogo width="40px" />
         </a>
         <h1 class="site-title">
             <a href="/" target="_self" rel="home">cruxy</a>
@@ -25,34 +34,12 @@ const {instantSticky = true}: HeaderConfig = Astro.props;
 
 <style>
     header {
-        --header-font-size: 2rem;
         --header-shrink-ratio: 0.6;
-
-        position: sticky;
         height: var(--cruxy--header--height);
-        width: 100%;
-        top: 0;
-        left: 0;
-        z-index: 1000;
 
         &.instant-sticky {
             margin-top: calc(var(--cruxy--header--height) * -1);
         }
-    }
-
-    .container {
-        position: absolute;
-        top: 0;
-        left: 1rem;
-        display: flex;
-        gap: 1rem;
-        align-items: center;
-        padding: 0 1rem 0 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2000;
-
-        font-size: var(--header-font-size);
     }
 
     @media (prefers-reduced-motion: no-preference) {
@@ -61,42 +48,32 @@ const {instantSticky = true}: HeaderConfig = Astro.props;
             transform-origin: left top;
         }
 
-        header[data-scroll=true] .container {
+        header[data-scroll="true"] .container {
             transform: scale(var(--header-shrink-ratio));
 
             h1 {
-                display: none
+                display: none;
             }
         }
     }
-
-    .mask {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 100%;
-        height: 100%;
-        z-index: 500;
-        background-color: var(--cruxy--color--background-primary-100);
-        mask-image: linear-gradient(to bottom, white -70%, transparent 75%);
-    }
-
 </style>
 
 <script>
     const setHeaderScroll = () => {
-        const header = document.getElementById('header');
+        const header = document.getElementById("header");
         if (!header) {
             return;
         }
-        header.setAttribute('data-scroll', window.scrollY > 1 ? 'true' : 'false');
-    }
+        header.setAttribute(
+            "data-scroll",
+            window.scrollY > 1 ? "true" : "false",
+        );
+    };
 
     (() => {
-        document.addEventListener('scroll', setHeaderScroll);
-        document.addEventListener('astro:after-swap', () => {
-            window.addEventListener('scroll', setHeaderScroll);
+        document.addEventListener("scroll", setHeaderScroll);
+        document.addEventListener("astro:after-swap", () => {
+            window.addEventListener("scroll", setHeaderScroll);
         });
     })();
 </script>

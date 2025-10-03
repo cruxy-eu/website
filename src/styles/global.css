@@ -1,16 +1,23 @@
+@layer reset;
+
 @import "tailwindcss";
 
-@layer reset, general-styling, containers, effects;
+@layer general-styling, containers, effects, utilities;
 
 :root {
-    --cruxy--color--white: #f1f1f1;
-    --cruxy--color--black: #000;
+    --cruxy--color--white-oklch: 0.9581 0 0;
+    --cruxy--color--black-oklch: 0 0 0;
 
-    --cruxy--color--dark-purple: #1d1229;
-    --cruxy--color--orange: #ff6900;
+    --cruxy--color--dark-purple-oklch: 0.2092 0.0463 304.78;
+    --cruxy--color--orange-oklch: 0.6996 0.201959 44.4414;
+    --cruxy--color--orange-muted: 0.7151 0.1785 27.97;
+    --cruxy--color--purple-muted: 0.5671 0.1517 299.04;
+
+    --cruxy--font--sans: "Montserrat", sans-serif;
+    --cruxy--font--serif: "Brygada", serif;
 
     --cruxy--style--global--font-size: 16px;
-    --cruxy--style--global--font-family: 'Montserrat';
+    --cruxy--style--global--font-family: var(--cruxy--font--sans);
     --cruxy--style--global--content-size: 1360px;
     --cruxy--style--global--wide-size: 1920px;
 
@@ -22,8 +29,6 @@
     --cruxy--spacer--unit: 1.25rem;
     --cruxy--background--grid--size: 2.5rem;
 
-    --cruxy--font--serif: 'Brygada', serif;
-
     --accent1: #ff6f61;
     --accent2: #6c5ce7;
     --accent3: #00cec9;
@@ -33,30 +38,37 @@
     --cruxy--effect--fade-up--duration: 1s;
 }
 
-:root[data-theme="dark"], .theme-dark {
-    --cruxy--color--background-primary-100: var(--cruxy--color--black);
-    --cruxy--color--background-secondary-100: #06040c;
-    --cruxy--color--text-primary-100: #f1f1f1;
-
-    --cruxy--color--border-primary-100: rgba(255, 255, 255, 0.05);
+:root[data-theme="dark"],
+.theme-dark {
+    --background: var(--cruxy--color--black-oklch);
+    --foreground: var(--cruxy--color--white-oklch);
+    --primary: var(--cruxy--color--dark-purple-oklch);
+    --secondary: var(--cruxy--color--orange-oklch);
+    --anchor: var(--cruxy--color--orange-oklch);
+    --opaque: 0 0 0;
+    --card: var(--cruxy--color--purple-muted);
+    --glass: 1 0 1;
 
     --cruxy--background--grid--color: rgba(255, 255, 255, 0.05);
-    --cruxy--background--grid--bg-color: rgba(0, 0, 0, 0.9);
-    --cruxy--background--opaque--bg-color: rgba(0, 0, 0, 0.9);
-    --cruxy--background--glass--bg-color: rgba(0, 0, 0, 0.75);
 }
 
-:root[data-theme="light"], .theme-light {
-    --cruxy--color--background-primary-100: var(--cruxy--color--white);
-    --cruxy--color--background-secondary-100: #06040c;
-    --cruxy--color--text-primary-100: #1d1229;
+:root[data-theme="light"],
+.theme-light {
+    --background: var(--cruxy--color--white-oklch);
+    --foreground: var(--cruxy--color--black-oklch);
+    --muted-foreground: var(--cruxy--color--black-oklch) 80;
+    --anchor: var(--cruxy--color--orange-oklch);
+    --primary: var(--cruxy--color--dark-purple-oklch);
+    --secondary: var(--cruxy--color--orange-oklch);
+    --opaque: 1 0 0;
+    --card: var(--cruxy--color--orange-muted);
+    --glass: 1 0 1;
+    --border: 0 0 0;
 
     --cruxy--color--border-primary-100: rgba(0, 0, 0, 0.05);
 
     --cruxy--background--grid--color: rgba(0, 0, 0, 0.05);
     --cruxy--background--grid--bg-color: #fff;
-    --cruxy--background--opaque--bg-color: #fff;
-    --cruxy--background--glass--bg-color: rgba(255, 255, 255, 0.25);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -103,11 +115,16 @@
     }
 
     body {
-        background-color: var(--cruxy--color--background-primary-100);
-        color: var(--cruxy--color--text-primary-100);
+        background-color: oklch(var(--background));
+        color: oklch(var(--foreground));
     }
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-weight: 700;
         line-height: 1.5;
         font-style: normal;
@@ -120,13 +137,12 @@
     }
 
     a:hover {
-        color: var(--cruxy--color--orange);
+        color: oklch(var(--anchor));
     }
 
     main {
         min-height: calc(100vh - var(--cruxy--header--height));
     }
-
 }
 
 @layer containers {
@@ -137,50 +153,36 @@
 }
 
 @layer effects {
-    .glass {
-        background-color: var(--cruxy--color--background-primary-100) 80;
-        backdrop-filter: blur(2px);
-        -webkit-backdrop-filter: blur(1px); /* For Safari browser support */
-        mix-blend-mode: hard-light;
-    }
-
-    .glass::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-
-        margin: -1px;
-        border-radius: inherit;
-
-        background: var(--cruxy--background--glass--bg-color);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-
     .bg-grid.lines {
         background-color: var(--cruxy--background--grid--bg-color);
         background-image:
-                linear-gradient(var(--cruxy--background--grid--color) 1px, transparent 1px),
-                linear-gradient(90deg, var(--cruxy--background--grid--color) 1px, transparent 1px);
-        background-size: var(--cruxy--background--grid--size) var(--cruxy--background--grid--size);
+            linear-gradient(
+                var(--cruxy--background--grid--color) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                var(--cruxy--background--grid--color) 1px,
+                transparent 1px
+            );
+        background-size: var(--cruxy--background--grid--size)
+            var(--cruxy--background--grid--size);
     }
 
     .bg-grid.dotted {
         background-color: var(--cruxy--background--grid--bg-color);
-        background-image: radial-gradient(circle, var(--cruxy--background--grid--color) 1px, transparent 1px);
-        background-size: var(--cruxy--background--grid--size) var(--cruxy--background--grid--size);
-    }
-
-    .bg-opaque {
-        background-color: var(--cruxy--background--opaque--bg-color);
+        background-image: radial-gradient(
+            circle,
+            var(--cruxy--background--grid--color) 1px,
+            transparent 1px
+        );
+        background-size: var(--cruxy--background--grid--size)
+            var(--cruxy--background--grid--size);
     }
 
     .drop-shadow {
-        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1)) drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1))
+            drop-shadow(0 0 10px rgba(0, 0, 0, 0.1));
     }
 
     .fade-up-1 {
@@ -204,11 +206,6 @@
         animation: 1.5s fadeUp forwards;
     }
 
-    .bg-side-fade {
-        mask-image:
-                linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-    }
-
     @keyframes fadeUp {
         0% {
             opacity: 0;
@@ -221,10 +218,116 @@
         }
     }
 
-    .blob {position: absolute;border-radius: 50%;filter: blur(60px);opacity: 0.2;z-index: 0;}
-    .blob1 {background: var(--accent1);width: 400px;height: 400px;top: -100px;left: -150px;}
-    .blob2 {background: var(--accent2);width: 300px;height: 300px;bottom: 100px;right: -100px;}
-    .blob3 {background: var(--accent3);width: 250px;height: 250px;top: 500px;right: 200px;}
-
+    .blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.2;
+        z-index: 0;
+    }
+    .blob1 {
+        background: var(--accent1);
+        width: 400px;
+        height: 400px;
+        top: -100px;
+        left: -150px;
+    }
+    .blob2 {
+        background: var(--accent2);
+        width: 300px;
+        height: 300px;
+        bottom: 100px;
+        right: -100px;
+    }
+    .blob3 {
+        background: var(--accent3);
+        width: 250px;
+        height: 250px;
+        top: 500px;
+        right: 200px;
+    }
 }
 
+@layer utilities {
+    .text-foreground {
+        color: oklch(var(--foreground));
+    }
+
+    .text-muted {
+        color: oklch(var(--muted-foreground));
+    }
+
+    .text-anchor {
+        color: oklch(var(--anchor));
+    }
+
+    .text-gradient {
+        background-image: linear-gradient(
+            135deg,
+            oklch(var(--cruxy--color--orange-muted)),
+            oklch(var(--cruxy--color--purple-muted))
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+    }
+
+    .bg-background {
+        background-color: oklch(var(--background));
+    }
+
+    .bg-card {
+        background-color: oklch(var(--card));
+    }
+
+    .bg-primary {
+        background-color: oklch(var(--primary));
+    }
+
+    .bg-secondary {
+        background-color: oklch(var(--secondary));
+    }
+
+    .font-serif {
+        font-family: var(--cruxy--font--serif);
+    }
+
+    .font-sans {
+        font-family: var(--cruxy--style--global--font-family), sans-serif;
+    }
+
+    .font-mono {
+        font-family:
+            ui-monospace,
+            SFMono-Regular,
+            Menlo,
+            Monaco,
+            Consolas,
+            Liberation Mono,
+            Courier New,
+            monospace;
+    }
+
+    .bg-side-fade {
+        mask-image: linear-gradient(
+            to right,
+            transparent 0%,
+            black 5%,
+            black 95%,
+            transparent 100%
+        );
+    }
+
+    .bg-opaque {
+        background-color: oklch(var(--opaque));
+    }
+
+    .bg-mask {
+        background-color: oklch(var(--background));
+        mask-image: linear-gradient(to bottom, white -70%, transparent 75%);
+    }
+
+    .border-border {
+        border-color: oklch(var(--border) / 5%);
+    }
+}

@@ -1,13 +1,13 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
-import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from "@tailwindcss/vite";
 
-import icon from 'astro-icon';
+import icon from "astro-icon";
 
 export default defineConfig({
-  site: 'https://cruxy.eu',
-  output: 'static',
+  site: "https://cruxy.eu",
+  output: "static",
   compressHTML: true,
   vite: {
     plugins: [tailwindcss()],

@@ -1,25 +1,36 @@
 ---
-import {Layout, LayoutProps} from '@cruxy/layouts';
-import {Cover, Section} from '@cruxy/components';
+import {Layout, LayoutProps } from '@cruxy/layouts';
+import {Cover, SkewedPanel} from '@cruxy/components';
 import ecImg from '../assets/ec_full.webp';
 import ServicesBar from "../components/landing/ServicesBar.astro";
 const layout: LayoutProps = {
     header: {
-        instantSticky: true
+        instantSticky: false
     }
-}
+};
 ---
 <Layout {...layout}>
-    <Cover img={ecImg}>
-        <section>
-            <p class="bubble left glass">
-                Hello, we are Anne and Tom.
-            </p>
-            <p class="bubble right glass">
-                We live and work remotely in our van.
-            </p>
-            </section>
+
+    <section class="text-xl px-4 space-y-4">
+    </section>
+
+    <Cover img={ecImg} cover="fit">
+        <section class="text-2xl p-12 h-screen text-foreground font-mono mx-auto backdrop-blur-sm bg-black/30 rounded-lg border border-white/20 flex flex-col space-y-6">
+            <p>We are a dynamic duo of digital nomads, combining our expertise in web development and design to deliver top-notch digital solutions. With a passion for creativity and innovation, we specialize in crafting custom websites, engaging designs, and effective digital marketing strategies that help businesses thrive in the online world. Our unique lifestyle fuels our creativity, allowing us to bring fresh perspectives and ideas to every project we undertake.</p>
+            <p>At cruxy, we believe in the power of technology to transform businesses and create meaningful connections. We are committed to providing personalized services that cater to the unique needs of each
+        </section>
     </Cover>
+
+    <SkewedPanel
+        backgroundImage={ecImg}
+        title="Spring Boot"
+        description="To empower businesses and individuals with innovative digital solutions that drive growth and success."
+        features={[
+            "Custom Web Development",
+            "Creative Design Solutions",
+            "Effective Digital Marketing",
+            "Reliable Support and Maintenance"
+        ]}
 
     <Cover img={ecImg}>
         <section>
@@ -31,51 +42,7 @@ const layout: LayoutProps = {
 </Layout>
 
 <style>
-    section {
-        --border-radius: 1rem;
-        --smaller-border-radius: 0.25rem;
 
-        width: 100%;
-
-        display: grid;
-
-        grid-template-columns:
-            [grid-start]
-                1rem
-            [left]
-                calc(50vw - 1rem)
-            [middle]
-                calc(50vw - 1rem)
-            [right]
-                1rem
-            [grid-end]
-    }
-
-    p {
-        font-size: 1.5rem;
-        line-height: 1.5rem;
-        margin-bottom: 1rem;
-        text-wrap: pretty;
-    }
-
-    .bubble {
-        width: fit-content;
-        padding: 1rem;
-        display: block;
-        text-align: left;
-
-        &.left {
-            border-radius: 0 var(--smaller-border-radius) var(--border-radius) 0;
-            grid-column: grid-start / right
-        }
-
-        &.right {
-            border-radius: var(--smaller-border-radius) 0 0 var(--border-radius);
-            grid-column: left / grid-end;
-            align-self: start;
-            justify-self: end;
-        }
-    }
 
     .half.left {
         margin-top: 1rem;

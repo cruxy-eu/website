@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"article"> {
+    class?: string;
+}
+
+const { class: className, ...attrs } = Astro.props as Props;
+
+const baseStyle = "card";
+---
+
+<article class:list={[baseStyle, className]} {...attrs}>
+    <slot />
+</article>

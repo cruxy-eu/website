@@ -1,11 +1,11 @@
 ---
 interface Props {
-  size?: 'small' | 'medium' | 'large' | 'xl'
+    size?: "small" | "base" | "lg" | "xl";
 }
 
-const { size = 'medium' }: Props = Astro.props;
-
+const { size = "base" }: Props = Astro.props;
 ---
+
 <style>
     .block {
         display: block;
@@ -24,7 +24,7 @@ const { size = 'medium' }: Props = Astro.props;
         --spacer-height: var(--cruxy--spacer--unit);
     }
 
-    .large {
+    .lg {
         --spacer-height: calc(var(--cruxy--spacer--unit) * 2);
     }
 

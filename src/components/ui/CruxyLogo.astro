@@ -1,0 +1,7 @@
+---
+import cruxyLogo from "../../assets/cruxy-logo.svg";
+
+const { ...props } = Astro.props;
+---
+
+<img src={cruxyLogo.src} alt="Cruxy Logo" {...props} />

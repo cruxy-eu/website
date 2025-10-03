@@ -1,61 +1,63 @@
 ---
-import { Layout, } from '@cruxy/layouts';
-import { Cover, Spacer, HeaderConfig, Hero, Typewriter, Gradient, Definition } from '@cruxy/components';
-import { ServicesBar } from '@cruxy/components/landing';
+import { Layout } from "@cruxy/layouts";
+import {
+    Cover,
+    Spacer,
+    HeaderConfig,
+    Typewriter,
+    SkewedPanel,
+    Badge,
+    Button,
+} from "@cruxy/components";
+import {
+    FreelanceRemoteDeveloper,
+    Definition,
+    Hero,
+} from "@cruxy/components/landing";
 const header: HeaderConfig = {
-	instantSticky: true
-}
-import ecImg from '../assets/ec_full.webp';
+    instantSticky: true,
+};
+import ecImg from "../assets/ec_full.webp";
 
+const offers = [
+    "Full-Stack Development",
+    "Cloud & DevOps",
+    "Big Picture Thinking",
+    "Technical Writing",
+];
+
+const words = ["create", "craft", "code", "build", "design"];
 ---
+
 <Layout header={header}>
-	<section class="bg-grid lines bg-side-fade">
-		<Spacer size="xl" />
+    <section class="bg-grid lines bg-side-fade">
+        <Hero>
+            <Spacer size="xl" />
 
-		<ServicesBar />
+            <FreelanceRemoteDeveloper />
 
-		<Hero class="hero-section">
-			<Spacer size="xl" />
+            <div
+                class="flex flex-row justify-center items-center gap-4 fade-up-2 pt-8"
+            >
+                <span class="static-prefix">we</span>
+                <Typewriter words={["create", "design"]} />
+            </div>
+            <div
+                class="flex flex-row justify-center items-center gap-4 fade-up-3"
+            >
+                <span class="text-gradient pb-1">cruxy</span> things
+            </div>
+            <div
+                class="flex flex-row justify-center items-center gap-4 fade-up-4"
+            >
+                for you
+            </div>
 
-			<div class="line fade-up-2">
-				<span class="static-prefix">we</span>
-				<Typewriter
-					words={[
-						"create",
-						"craft",
-						"code",
-						"build",
-						"design"
-					]}  />
-			</div>
-			<div class="line fade-up-3"><Gradient>cruxy</Gradient> things</div>
-			<div class="line fade-up-4">for you</div>
+            <Spacer size="xl" />
+        </Hero>
+    </section>
 
-			<Spacer size="xl" />
-		</Hero>
-
-	</section>
-
-	<section class="bg-opaque flex flex-col justify-center items-center">
-		<Spacer size="xl" />
-		<Definition />
-		<Spacer size="xl" />
-	</section>
-
-	<section class="bg-grid dotted justify-center">
-		<Cover img={ecImg}>
-
-		</Cover>
-	</section>
-
+    <section class="bg-opaque flex flex-col justify-center items-center py-20">
+        <Definition />
+    </section>
 </Layout>
-
-<style>
-	.line {
-		display: flex;
-		flex-direction: row;
-		gap: 1rem;
-		justify-content: center;
-	}
-
-</style>
