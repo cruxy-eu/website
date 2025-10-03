@@ -1,73 +1,74 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import { Image } from "astro:assets";
 
-interface CoverProps {
-    img?: string;
-    alt?: string;
-    title?: string;
-    overlay?: "dark" | "light" | "none";
+interface CoverProps extends HTMLAttributes<"section"> {
+  img?: string;
+  alt?: string;
+  title?: string;
+  overlay?: "dark" | "light" | "none";
+  class?: string;
 }
 
 let {
-    img = "",
-    alt = "",
-    title = "",
-    overlay = "none",
-    ...props
-}: CoverProps = Astro.props;
+  img = "",
+  alt = "",
+  title = "",
+  overlay = "none",
+  class: className,
+  ...props
+} = Astro.props as CoverProps;
+
+const overlayStyle = {
+  dark: "bg-black/40",
+  light: "bg-black/10",
+  none: "bg-transparent",
+}[overlay];
 ---
 
-<section class="cover" {...props}>
-    <Image src={img} alt={alt} title={title} fetchpriority="high" />
-    {overlay && overlay !== "none" && <div class={`overlay ${overlay}`} />}
-    <slot />
+<section class:list={["cover", className]} {...props}>
+  <Image src={img} alt={alt} title={title} fetchpriority="high" />
+  {
+    overlay && overlay !== "none" && (
+      <div class:list={["overlay", overlayStyle]} />
+    )
+  }
+  <slot />
 </section>
 
 <style is:global>
-    .cover {
-        --image-index: -2;
-        --overlay-index: -1;
-        --content-index: 0;
+  .cover {
+    --image-index: -2;
+    --overlay-index: -1;
+    --content-index: 0;
 
-        position: relative;
-        container: cover inline-size;
-        isolation: isolate;
-        width: 100vw;
-        height: 100vh;
+    position: relative;
+    container: cover inline-size;
+    isolation: isolate;
+    width: 100vw;
+    height: 100vh;
 
-        &:first-of-type {
-            padding-top: var(--cruxy--header--height);
-        }
-
-        img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            z-index: var(--image-index);
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: var(--overlay-index);
-
-            &.dark {
-                background-color: rgba(125, 20, 30, 0.4);
-            }
-
-            &.light {
-                background-color: rgba(255, 255, 255, 0.5);
-            }
-
-            &.none {
-                background-color: transparent;
-            }
-        }
+    &:first-of-type {
+      padding-top: var(--cruxy--header--height);
     }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: var(--image-index);
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: var(--overlay-index);
+    }
+  }
 </style>

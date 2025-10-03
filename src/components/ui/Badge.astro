@@ -20,27 +20,22 @@ const baseStyles =
     "inline-flex items-center rounded-full px-3 py-0.5 text-base font-semibold leading-4 tracking-wide whitespace-nowrap";
 
 const colorStyles: Record<string, { default: string; outline: string }> = {
-    // Uses Indigo/Blue for a primary feel
     primary: {
         default: "bg-indigo-100 text-indigo-700",
         outline: "border border-indigo-500 text-indigo-700",
     },
-    // Uses Gray for a neutral/secondary feel
     secondary: {
         default: "bg-gray-200 text-gray-700",
         outline: "border border-gray-400 text-gray-700",
     },
-    // Uses Green for success/positive status
     success: {
         default: "bg-green-100 text-green-700",
         outline: "border border-green-500 text-green-700",
     },
-    // Uses Yellow/Orange for warnings/in-progress status
     warning: {
         default: "bg-yellow-100 text-yellow-800",
         outline: "border border-yellow-500 text-yellow-800",
     },
-    // Uses Red for danger/error status
     danger: {
         default: "bg-red-100 text-red-700",
         outline: "border border-red-500 text-red-700",

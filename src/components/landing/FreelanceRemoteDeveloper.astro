@@ -2,105 +2,103 @@
 import { Icon } from "astro-icon/components";
 
 interface Part {
-    full: string;
-    small?: string;
-    link: string;
-    icon: string;
+  full: string;
+  small?: string;
+  link: string;
+  icon: string;
 }
 
 const parts: Part[] = [
-    { full: "Freelance", link: "#", icon: "mdi:briefcase" },
-    { full: "Remote", link: "#", icon: "mdi:earth" },
-    { full: "Developer", small: "Dev", link: "#", icon: "mdi:code-block-tags" },
+  { full: "Freelance", link: "#", icon: "mdi:briefcase" },
+  { full: "Remote", link: "#", icon: "mdi:earth" },
+  { full: "Developer", small: "dev>", link: "#", icon: "mdi:code-block-tags" },
 ];
 ---
 
-<section class="fade-up-0 text-center text-2xl font-serif">
-    <ul
-        class="backdrop-blur-sm drop-shadow fade-up-1 inline-flex flex-row justify-center border-2 border-solid border-border rounded-2xl"
-    >
-        {
-            parts.map((part) => (
-                <li class="flex flex-col cursor-pointer text-center">
-                    <a href={part.link} target="_self">
-                        <span class="icon">
-                            <Icon name={part.icon} />
-                        </span>
-                        <span class="full">{part.full}</span>
-                        <span class="small">
-                            {part.small ? part.small : part.full}
-                        </span>
-                    </a>
-                </li>
-            ))
-        }
-    </ul>
+<section class="fade-up-0 text-center font-mono text-xl font-extralight">
+  <ul
+    class="fade-up-1 border-border inline-flex flex-row justify-center rounded-2xl border-2 border-solid drop-shadow backdrop-blur-sm"
+  >
+    {
+      parts.map((part) => (
+        <li>
+          <a href={part.link} target="_self" class="flex cursor-pointer flex-col items-center justify-center gap-2 hover:text-anchor"
+            <span class="icon">
+              <Icon name={part.icon} />
+            </span>
+            <span class="full">{part.full}</span>
+            <span class="small">{part.small ? part.small : part.full}</span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </section>
 
 <style>
-    section {
-        ul {
-            a {
-                position: relative;
-                display: inline-flex;
-                flex-direction: column;
-                align-items: center;
+  section {
+    ul {
+      a {
+        position: relative;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
 
-                padding: 1.25rem;
-                width: 100%;
-                text-align: center;
-            }
+        padding: 1.25rem;
+        width: 100%;
+        text-align: center;
+      }
 
-            li:first-child a:hover {
-                border-top-left-radius: 1rem;
-                border-bottom-left-radius: 1rem;
-            }
+      li:first-child a:hover {
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+      }
 
-            li:last-child a:hover {
-                border-top-right-radius: 1rem;
-                border-bottom-right-radius: 1rem;
-            }
+      li:last-child a:hover {
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+      }
 
-            .icon {
-                display: inline-block;
-                width: 1.5rem;
-                height: 1.5rem;
-                vertical-align: middle;
-            }
-        }
+      .icon {
+        display: inline-block;
+        width: 1.5rem;
+        height: 1.5rem;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .small {
+    display: block;
+  }
+  .full {
+    display: none;
+  }
+
+  @container main (min-width: 640px) {
+    section ul {
+      width: auto;
+      border-radius: 1rem;
+    }
+
+    section ul a {
+      flex-direction: row;
     }
 
     .small {
-        display: block;
+      display: none;
     }
+
     .full {
-        display: none;
+      display: block;
     }
 
-    @container main (min-width: 640px) {
-        section ul {
-            width: auto;
-            border-radius: 1rem;
-        }
-
-        section ul a {
-            flex-direction: row;
-        }
-
-        .small {
-            display: none;
-        }
-
-        .full {
-            display: block;
-        }
-
-        li:not(:last-child) a::after {
-            height: 2rem;
-        }
-
-        .icon {
-            margin-right: 0.5rem;
-        }
+    li:not(:last-child) a::after {
+      height: 2rem;
     }
+
+    .icon {
+      margin-right: 0.5rem;
+    }
+  }
 </style>

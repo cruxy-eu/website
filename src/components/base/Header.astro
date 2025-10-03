@@ -3,8 +3,9 @@ import type { HTMLAttributes } from "astro/types";
 
 import CruxyLogo from "../ui/CruxyLogo.astro";
 import ToggleTheme from "./ToggleTheme.astro";
+
 interface HeaderConfig extends HTMLAttributes<"header"> {
-    instantSticky?: boolean;
+  instantSticky?: boolean;
 }
 
 const { instantSticky = true } = Astro.props as HeaderConfig;
@@ -15,65 +16,62 @@ const stickyStyle = instantSticky ? "instant-sticky" : "";
 ---
 
 <header id="header" class:list={[baseStyle, stickyStyle]}>
-    <div class="mask absolute top-0 left-0 w-full h-full z-500 bg-mask"></div>
-    <div
-        class="container w-full h-full absolute top-0 left-4 flex flex-row gap-4 items-center pt-4 z-2000"
-    >
-        <a href="/" target="_self" rel="home" class="logo-link">
-            <CruxyLogo width="40px" />
-        </a>
-        <h1 class="site-title">
-            <a href="/" target="_self" rel="home">cruxy</a>
-        </h1>
-        <h1>
-            <a href="/about" target="_self">about</a>
-        </h1>
-        <ToggleTheme />
-    </div>
+  <div class="mask bg-mask absolute top-0 left-0 z-500 h-full w-full"></div>
+  <div
+    class="absolute top-0 left-4 z-2000 container flex h-full w-full flex-row items-center gap-4 pt-4"
+  >
+    <a href="/" target="_self" rel="home" class="logo-link">
+      <CruxyLogo width="40px" />
+    </a>
+    <h1 class="site-title">
+      <a href="/" target="_self" rel="home">cruxy</a>
+    </h1>
+    <h1>
+      <a href="/about" target="_self">about</a>
+    </h1>
+    <ToggleTheme />
+  </div>
 </header>
 
 <style>
-    header {
-        --header-shrink-ratio: 0.6;
-        height: var(--cruxy--header--height);
+  header {
+    --header-shrink-ratio: 0.6;
+    height: var(--cruxy--header--height);
 
-        &.instant-sticky {
-            margin-top: calc(var(--cruxy--header--height) * -1);
-        }
+    &.instant-sticky {
+      margin-top: calc(var(--cruxy--header--height) * -1);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .container {
+      transition: transform 0.05s linear;
+      transform-origin: left top;
     }
 
-    @media (prefers-reduced-motion: no-preference) {
-        .container {
-            transition: transform 0.05s linear;
-            transform-origin: left top;
-        }
+    header[data-scroll="true"] .container {
+      transform: scale(var(--header-shrink-ratio));
 
-        header[data-scroll="true"] .container {
-            transform: scale(var(--header-shrink-ratio));
-
-            h1 {
-                display: none;
-            }
-        }
+      h1 {
+        display: none;
+      }
     }
+  }
 </style>
 
 <script>
-    const setHeaderScroll = () => {
-        const header = document.getElementById("header");
-        if (!header) {
-            return;
-        }
-        header.setAttribute(
-            "data-scroll",
-            window.scrollY > 1 ? "true" : "false",
-        );
-    };
+  const setHeaderScroll = () => {
+    const header = document.getElementById("header");
+    if (!header) {
+      return;
+    }
+    header.setAttribute("data-scroll", window.scrollY > 1 ? "true" : "false");
+  };
 
-    (() => {
-        document.addEventListener("scroll", setHeaderScroll);
-        document.addEventListener("astro:after-swap", () => {
-            window.addEventListener("scroll", setHeaderScroll);
-        });
-    })();
+  (() => {
+    document.addEventListener("scroll", setHeaderScroll);
+    document.addEventListener("astro:after-swap", () => {
+      window.addEventListener("scroll", setHeaderScroll);
+    });
+  })();
 </script>

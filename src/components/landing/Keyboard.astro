@@ -1,0 +1,45 @@
+---
+import { Skewed } from "@cruxy/components"; // You may remove this if you aren't using it
+
+interface Props {
+  keys: Key[];
+}
+
+interface Key{
+  key: string;
+  href: string;
+}
+const { keys }: Props = Astro.props;
+
+keys.reverse();
+---
+
+<div class="flex flex-wrap items-center justify-center flex-row-reverse relative">
+{
+  keys.map((key, i) => (
+    <div class:list={[
+      `z-${i}`,
+      "key p-6 text-4xl w-48 bg-muted-background border-l-12 border-b-12 border-t-2 border-r-2 border-l-neutral-600 border-b-neutral-800 border-t-neutral-400 border-r-neutral-400 font-mono hover:cursor-pointer transition-all rounded-xl -m-0.5",
+      "transform skew-x-10"
+    ]}>
+
+      <div class="transform ">
+          <a href={key.href}>{key.key}</a>
+      </div>
+    </div>
+  ))
+}
+</div>
+
+<style>
+
+    .key {
+        box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .key:hover {
+        transform: translate(-5px, 5px) skewX(4deg);
+    }
+
+</style>

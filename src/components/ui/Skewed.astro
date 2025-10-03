@@ -1,0 +1,17 @@
+---
+import { Button, Cover } from "@cruxy/components";
+import { Badge } from "@cruxy/components";
+import type { HTMLAttributes } from "astro/types";
+
+interface SkewedProps extends HTMLAttributes<"div"> {
+  class?: string;
+}
+
+const { class: className } = Astro.props as SkewedProps;
+---
+
+<div class:list={["-skew-x-2 transform", className]}>
+    <div class="skew-x-2 transform">
+    <slot />
+    </div>
+</div>

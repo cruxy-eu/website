@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"div"> {
+  size?: "sm" | "base" | "lg" | "xl" | "header";
+  class?: string;
+}
+
+const { class: className, size = "base" }: Props = Astro.props;
+---
+
+<div class:list={["spacer", size, className]}></div>
+
+<style>
+  .spacer {
+    display: block;
+    height: var(--spacer-height);
+  }
+
+  :root {
+    --spacer-height: var(--cruxy--spacer--unit);
+  }
+
+  .sm {
+    --spacer-height: calc(var(--cruxy--spacer--unit) * 0.5);
+  }
+
+  .base {
+    --spacer-height: var(--cruxy--spacer--unit);
+  }
+
+  .lg {
+    --spacer-height: calc(var(--cruxy--spacer--unit) * 2);
+  }
+
+  .xl {
+    --spacer-height: calc(var(--cruxy--spacer--unit) * 4);
+  }
+
+  .header {
+    --spacer-height: var(--cruxy--header--height);
+  }
+</style>

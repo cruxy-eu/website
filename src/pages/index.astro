@@ -1,63 +1,71 @@
 ---
 import { Layout } from "@cruxy/layouts";
+import { Icon } from 'astro-icon/components';
 import {
-    Cover,
-    Spacer,
-    HeaderConfig,
-    Typewriter,
-    SkewedPanel,
-    Badge,
-    Button,
+  Cover,
+  Spacer,
+  HeaderConfig,
+  Skewed,
+  Badge,
+  Button,
 } from "@cruxy/components";
 import {
-    FreelanceRemoteDeveloper,
-    Definition,
-    Hero,
+  FreelanceRemoteDeveloper,
+  Definition,
+  Hero,
+  Typewriter,
+  Keyboard,
 } from "@cruxy/components/landing";
 const header: HeaderConfig = {
-    instantSticky: true,
+  instantSticky: true,
 };
+
 import ecImg from "../assets/ec_full.webp";
 
 const offers = [
-    "Full-Stack Development",
-    "Cloud & DevOps",
-    "Big Picture Thinking",
-    "Technical Writing",
+  "Full-Stack Development",
+  "Cloud & DevOps",
+  "Big Picture Thinking",
+  "Technical Writing",
 ];
-
-const words = ["create", "craft", "code", "build", "design"];
 ---
 
 <Layout header={header}>
-    <section class="bg-grid lines bg-side-fade">
-        <Hero>
-            <Spacer size="xl" />
+  <section class="bg-grid lines bg-side-fade">
+    <Hero>
+      <Spacer size="header" />
+      <FreelanceRemoteDeveloper />
+      <div class="items-left flex flex-col items-center">
+        <div class="fade-up-2 flex flex-row gap-4 pt-8">
+          <span class="static-prefix">we</span>
+          <Typewriter words={["create", "craft", "code", "build", "design"]} />
+        </div>
+        <div class="fade-up-3 flex flex-row items-center justify-center gap-4">
+          <span class="text-gradient pb-1">cruxy</span> things
+        </div>
+        <div class="fade-up-4 flex flex-row items-center justify-center gap-4">
+          for you
+        </div>
+      </div>
+      <Spacer />
+    </Hero>
+  </section>
 
-            <FreelanceRemoteDeveloper />
+  <section class="bg-opaque flex flex-col items-center justify-center py-20">
+    <Definition />
+  </section>
 
-            <div
-                class="flex flex-row justify-center items-center gap-4 fade-up-2 pt-8"
-            >
-                <span class="static-prefix">we</span>
-                <Typewriter words={["create", "design"]} />
-            </div>
-            <div
-                class="flex flex-row justify-center items-center gap-4 fade-up-3"
-            >
-                <span class="text-gradient pb-1">cruxy</span> things
-            </div>
-            <div
-                class="flex flex-row justify-center items-center gap-4 fade-up-4"
-            >
-                for you
-            </div>
-
-            <Spacer size="xl" />
-        </Hero>
-    </section>
-
-    <section class="bg-opaque flex flex-col justify-center items-center py-20">
-        <Definition />
-    </section>
+  <section class="bg-muted-background font-mono space-y-4 p-16 text-foreground">
+    <div class="gap-2 p-x-8 inline-grid grid-rows-2 grid-cols-[auto_1fr]">
+        <span class="text-4xl">#</span>
+        <span class="text-4xl">Toolbox</span>
+        <span class="col-start-2 text-lg text-muted-foreground">These are some of the things we specialize in.</span>
+    </div>
+    <Keyboard keys={[
+      { "key": "Java", href: "#"},
+      { "key": "Rust", href: "#"},
+      { "key": "Cloud", href: "#"},
+      { "key": "Docs", href: "#"},
+    ]} />
+  </section>
 </Layout>

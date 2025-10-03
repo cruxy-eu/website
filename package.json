@@ -13,7 +13,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow pnpm",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write ."
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
@@ -21,5 +23,10 @@
     "astro": "^5.14.1",
     "astro-icon": "^1.1.5",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.6.14"
   }
 }

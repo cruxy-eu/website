@@ -2,39 +2,41 @@
 import type { HTMLAttributes } from "astro/types";
 
 interface Props extends HTMLAttributes<"div"> {
-    class?: string;
+  class?: string;
 }
 
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<div class:list={["text-6xl font-bold radial space-y-4", className]} {...attrs}>
-    <slot />
+<div class:list={["radial space-y-4 text-6xl font-bold", className]} {...attrs}>
+  <slot />
 </div>
 
 <style>
-    .radial {
-        position: relative;
-        overflow: hidden;
-    }
+  .radial {
+    position: relative;
+    overflow: hidden;
+  }
 
-    .radial::after {
-        content: "";
-        position: absolute;
-        bottom: 50%;
-        left: 50%;
-        transform: translateX(-50%) rotate(-10deg);
-        width: 250%;
-        height: 100px;
-        background: radial-gradient(
-            ellipse 70% 150% at 50% 50%,
-            rgba(255, 111, 97, 0.25) 0%,
-            rgba(255, 111, 97, 0.1) 50%,
-            rgba(132, 94, 194, 0.05) 80%,
-            transparent 100%
-        );
-        filter: blur(60px);
-        z-index: 2;
-        pointer-events: none;
-    }
+  .radial::after {
+    --radial-color-1: oklch(var(--cruxy--color--orange-muted) / 30%);
+    --radial-color-2: oklch(var(--cruxy--color--purple-muted) / 30%);
+    content: "";
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%) rotate(-10deg);
+    width: 250%;
+    height: 100px;
+    background: radial-gradient(
+      ellipse 70% 150% at 50% 50%,
+      var(--radial-color-1) 0%,
+      var(--radial-color-2) 50%,
+      rgba(132, 94, 194, 0.05) 80%,
+      transparent 100%
+    );
+    filter: blur(80px);
+    z-index: 2;
+    pointer-events: none;
+  }
 </style>

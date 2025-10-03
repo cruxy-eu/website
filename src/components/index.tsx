@@ -1,11 +1,9 @@
 export { default as CommonHead } from "./base/CommonHead.astro";
-export { default as Header, HeaderConfig } from "./base/Header.astro";
+export { default as Header } from "./base/Header.astro";
 export { default as Footer } from "./base/Footer.astro";
 export { default as CruxyLogo } from "./ui/CruxyLogo.astro";
 export { default as Cover } from "./ui/Cover.astro";
-export { default as Spacer } from "./layout/Spacer.astro";
-export { default as SkewedPanel } from "./layout/SkewedPanel.astro";
-export { default as Hero } from "./landing/Hero.astro";
-export { default as Typewriter } from "./typography/effects/Typewriter.astro";
+export { default as Spacer } from "./ui/Spacer.astro";
+export { default as Skewed } from "./ui/Skewed.astro";
 export { default as Badge } from "./ui/Badge.astro";
 export { default as Button } from "./ui/Button.astro";

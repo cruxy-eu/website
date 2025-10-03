@@ -1,61 +1,53 @@
 ---
-import {Layout, LayoutProps } from '@cruxy/layouts';
-import {Cover, SkewedPanel} from '@cruxy/components';
-import ecImg from '../assets/ec_full.webp';
-import ServicesBar from "../components/landing/ServicesBar.astro";
+import { Layout, LayoutProps } from "@cruxy/layouts";
+import { Cover, Skewed } from "@cruxy/components";
+import ecImg from "../assets/ec_full.webp";
 const layout: LayoutProps = {
-    header: {
-        instantSticky: false
-    }
+  header: {
+    instantSticky: true,
+  },
 };
 ---
+
 <Layout {...layout}>
-
-    <section class="text-xl px-4 space-y-4">
-    </section>
-
-    <Cover img={ecImg} cover="fit">
-        <section class="text-2xl p-12 h-screen text-foreground font-mono mx-auto backdrop-blur-sm bg-black/30 rounded-lg border border-white/20 flex flex-col space-y-6">
-            <p>We are a dynamic duo of digital nomads, combining our expertise in web development and design to deliver top-notch digital solutions. With a passion for creativity and innovation, we specialize in crafting custom websites, engaging designs, and effective digital marketing strategies that help businesses thrive in the online world. Our unique lifestyle fuels our creativity, allowing us to bring fresh perspectives and ideas to every project we undertake.</p>
-            <p>At cruxy, we believe in the power of technology to transform businesses and create meaningful connections. We are committed to providing personalized services that cater to the unique needs of each
-        </section>
-    </Cover>
-
-    <SkewedPanel
-        backgroundImage={ecImg}
-        title="Spring Boot"
-        description="To empower businesses and individuals with innovative digital solutions that drive growth and success."
-        features={[
-            "Custom Web Development",
-            "Creative Design Solutions",
-            "Effective Digital Marketing",
-            "Reliable Support and Maintenance"
-        ]}
-
-    <Cover img={ecImg}>
+  <Cover img={ecImg} cover="fit" overlay="dark">
+    <section
+      class="b mx-auto flex h-screen flex-col space-y-6 rounded-lg p-12 font-mono text-2xl"
+    >
+      <Skewed class="max-w-4xl" backgroundImage={ecImg}>
         <section>
-            <p class="half left glass">
-                We provide digital services to clients around the world, specializing in web development, design, and digital marketing.
-            </p>
+          <p>
+            We provide digital services to clients around the world,
+            specializing in web development, design, and digital marketing.
+          </p>
         </section>
-    </Cover>
+      </Skewed>
+      <Skewed class="max-w-4xl pt-4" backgroundImage={ecImg}>
+        <section>
+          <p>
+            We provide digital services to clients around the world,
+            specializing in web development, design, and digital marketing.
+          </p>
+        </section>
+      </Skewed>
+    </section>
+  </Cover>
+  <Cover img={ecImg} cover="fit">
+    <Skewed class="max-w-4xl" backgroundImage={ecImg}>
+      <section>
+        <p>
+          We provide digital services to clients around the world, specializing
+          in web development, design, and digital marketing.
+        </p>
+      </section>
+    </Skewed>
+    <Skewed class="max-w-4xl pt-4" backgroundImage={ecImg}>
+      <section>
+        <p>
+          We provide digital services to clients around the world, specializing
+          in web development, design, and digital marketing.
+        </p>
+      </section>
+    </Skewed>
+  </Cover>
 </Layout>
-
-<style>
-
-
-    .half.left {
-        margin-top: 1rem;
-        grid-column: left / middle;
-        align-self: center;
-        transition: all 0.3s linear;
-        padding: 1rem;
-
-        @media (max-width: 70ch) {
-            // blur what is behind
-            backdrop-filter: blur(0.5rem);
-            grid-column: left / right;
-        }
-    }
-
-</style>
