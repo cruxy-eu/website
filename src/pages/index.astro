@@ -21,6 +21,7 @@ const header: HeaderConfig = {
 };
 
 import ecImg from "../assets/ec_full.webp";
+import Hashtag from "../components/landing/Hashtag.astro";
 
 const offers = [
   "Full-Stack Development",
@@ -55,17 +56,28 @@ const offers = [
     <Definition />
   </section>
 
-  <section class="bg-muted-background font-mono space-y-4 p-16 text-foreground">
-    <div class="gap-2 p-x-8 inline-grid grid-rows-2 grid-cols-[auto_1fr]">
-        <span class="text-4xl">#</span>
-        <span class="text-4xl">Toolbox</span>
-        <span class="col-start-2 text-lg text-muted-foreground">These are some of the things we specialize in.</span>
-    </div>
+  <section class="flex flex-col bg-background font-mono space-y-8 p-8 text-foreground">
+    <Hashtag title="Freelance" subtitle="We are available for hire!" />
+    <Button variant="primary" class="inline-flex w-fit items-center">
+      <Icon name="mdi:download" class="inline-block mr-2" />
+      Download CV
+    </Button>
+  </section>
+  <section class="bg-muted-background font-mono space-y-8 p-8 text-foreground">
+    <Hashtag title="Remote" subtitle="Wherever you are located, we are available!" />
+  </section>
+  <section class="bg-background font-mono space-y-8 p-8 text-foreground">
+    <Hashtag title="Developer" subtitle="Whether it is backend, frontend or platform engineering, we got you!" />
+  </section>
+
+  <section class="bg-muted-background font-mono space-y-8 p-8 text-foreground">
+    <Hashtag title="Toolbox" subtitle="These are some of the things we specialize in." />
     <Keyboard keys={[
       { "key": "Java", href: "#"},
       { "key": "Rust", href: "#"},
       { "key": "Cloud", href: "#"},
-      { "key": "Docs", href: "#"},
+      { "key": "Kafka", href: "#"},
     ]} />
   </section>
+
 </Layout>

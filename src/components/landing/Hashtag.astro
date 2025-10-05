@@ -1,0 +1,13 @@
+---
+interface Props {
+    title: string;
+    subtitle?: string;
+}
+
+const { title, subtitle }: Props = Astro.props;
+---
+<div class="gap-2 p-x-8 inline-grid grid-rows-2 grid-cols-[auto_1fr]">
+    <span class="text-4xl">#</span>
+    <span class="text-4xl">{title}</span>
+    {subtitle && <span class="col-start-2 text-lg text-muted-foreground">{subtitle}</span>}
+</div>

@@ -85,8 +85,9 @@
   --muted-background: oklch(15% 0 0);
   --foreground: var(--cruxy--color--white);
   --muted-foreground: oklch(85% 0 0);
-  --primary: var(--cruxy--color--purple);
-  --secondary: var(--cruxy--color--orange);
+  --primary: var(--cruxy--color--orange);
+  --muted-primary: oklch(from var(--primary) calc(l * 1.2) c h);
+  --secondary: var(--cruxy--color--purple);
   --anchor: var(--cruxy--color--orange);
   --opaque: oklch(0 0 0);
   --card: var(--muted-background);
@@ -103,7 +104,8 @@
   --foreground: var(--cruxy--color--black);
   --muted-foreground: oklch(30% 0 0);
   --anchor: var(--cruxy--color--orange);
-  --primary: var(--cruxy--color--dark-purple);
+  --primary: var(--cruxy--color--orange);
+  --muted-primary: oklch(from var(--primary) calc(l * 1.2) c h);
   --secondary: var(--cruxy--color--orange);
   --opaque: oklch(1 0 0);
   --card: var(--cruxy--color--orange-100);
@@ -223,6 +225,7 @@
     opacity: 0;
     animation: 0.3s fadeUp forwards;
   }
+
   .fade-up-2 {
     opacity: 0;
     animation: 0.6s fadeUp forwards;
@@ -328,6 +331,14 @@
 
   .bg-primary {
     background-color: var(--primary);
+  }
+
+  .bg-muted-primary {
+    background-color: var(--muted-primary);
+  }
+
+  .hover\:bg-muted-primary:hover {
+    background-color: var(--muted-primary);
   }
 
   .bg-secondary {
