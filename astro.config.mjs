@@ -4,6 +4,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 import icon from "astro-icon";
+import subsetFonts from "./integrations/subset-fonts.js";
 
 export default defineConfig({
   site: "https://cruxy.eu",
@@ -12,5 +13,5 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon()],
+  integrations: [icon(), subsetFonts()],
 });

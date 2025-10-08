@@ -11,11 +11,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro build && astro preview",
     "astro": "astro",
     "preinstall": "npx only-allow pnpm",
     "format:check": "prettier --check .",
-    "format:write": "prettier --write ."
+    "format:write": "prettier --write .",
+    "fonts:subset": "node scripts/subset-fonts.js"
   },
   "dependencies": {
     "@iconify-json/mdi": "^1.2.3",
