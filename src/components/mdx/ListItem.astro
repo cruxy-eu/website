@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className, ...attrs } = Astro.props;
+---
+
+<li class:list={["relative pl-6", className]} {...attrs}>
+  <span class="absolute left-0 text-gray-400 select-none">→</span>
+  <slot />
+</li>

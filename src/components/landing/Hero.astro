@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<"div"> {
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<div class:list={["radial space-y-4 text-6xl font-bold", className]} {...attrs}>
+<div class:list={["radial space-y-4 text-6xl", className]} {...attrs}>
   <slot />
 </div>
 

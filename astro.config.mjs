@@ -6,6 +6,15 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import subsetFonts from "./integrations/subset-fonts.js";
 
+import mdx from "@astrojs/mdx";
+
+const setDefaultMdxLayout = () => {
+  return function (_, file) {
+    file.data.astro.frontmatter.layout =
+      file.data.astro.frontmatter.layout || "@cruxy/layouts/MDXLayout.astro";
+  };
+};
+
 export default defineConfig({
   site: "https://cruxy.eu",
   output: "static",
@@ -13,5 +22,11 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  integrations: [icon(), subsetFonts()],
+  integrations: [
+    icon(),
+    subsetFonts(),
+    mdx({
+      remarkPlugins: [setDefaultMdxLayout],
+    }),
+  ],
 });

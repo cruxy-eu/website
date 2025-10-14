@@ -56,9 +56,12 @@
 
   --cruxy--font--sans: "Montserrat", sans-serif;
   --cruxy--font--serif: "Brygada", serif;
+  --cruxy--font--mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono,
+    Courier New, monospace;
 
   --cruxy--style--global--font-size: 16px;
-  --cruxy--style--global--font-family: var(--cruxy--font--sans);
+  --cruxy--style--global--font-family: var(--cruxy--font--mono);
   --cruxy--style--global--content-size: 1360px;
   --cruxy--style--global--wide-size: 1920px;
 
@@ -156,7 +159,7 @@
     line-height: 1.15;
     text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
-    font-family: var(--cruxy--style--global--font-family), sans-serif;
+    font-family: var(--cruxy--style--global--font-family);
     font-size: var(--cruxy--style--global--font-size);
   }
 
@@ -350,19 +353,11 @@
   }
 
   .font-sans {
-    font-family: var(--cruxy--style--global--font-family), sans-serif;
+    font-family: var(--cruxy--font--sans);
   }
 
   .font-mono {
-    font-family:
-      ui-monospace,
-      SFMono-Regular,
-      Menlo,
-      Monaco,
-      Consolas,
-      Liberation Mono,
-      Courier New,
-      monospace;
+    font-family: var(--cruxy--font--mono);
   }
 
   .bg-side-fade {

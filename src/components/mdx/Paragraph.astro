@@ -1,0 +1,14 @@
+---
+import { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"p"> {
+  class?: string;
+}
+
+const { class: className, ...attrs } = Astro.props as Props;
+
+const baseStyle = "text-foreground p-8 text-lg leading-relaxed max-w-4xl mx-auto";
+---
+<p class:list={[baseStyle, className]} {...attrs}>
+    <slot />
+</p>

@@ -26,7 +26,7 @@ const header: HeaderConfig = {
 
 <Layout header={header}>
   <section class="bg-grid lines bg-side-fade relative">
-    <Hero>
+      <Hero class="font-bold font-sans">
       <Spacer size="header" />
       <FreelanceRemoteDeveloper />
       <div class="items-left flex flex-col items-center">
@@ -49,41 +49,43 @@ const header: HeaderConfig = {
     <Definition />
   </section>
 
-  <div class="grid grid-cols-1 xl:grid-cols-3 bg-background text-foreground max-w-4xl xl:max-w-full mx-auto gap-8 py-8 xl:px-8">
-    <section
-        class="flex flex-col font-mono"
-    >
-        <Hashtag id="freelance" title="Freelance">
-            <p>Yes, the rumors are true. I'm currently available.</p>
-            <p>Hire me while you can!<p>
-        <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
-            <Icon name="mdi:download" class="mr-2 inline-block" />
-            Download CV
-        </Button>
-        </Hashtag>
-    </section>
 
-    <section
-        class="space-y-8 font-mono"
-    >
-        <Hashtag id="remote" title="Remote">
-            <p>My office is wherever there's a strong 4G signal.</p>
-            <p>I'm a seasoned remote professional with very flexible working hours.</p>
-        </Hashtag>
-    </section>
-    <section class="space-y-8 font-mono">
-        <Hashtag id="developer" title="Developer">
-            <p>Backend, frontend, platform engineering. I've done it all.</p>
-            <p>We're talking decades of experience and a truly staggering number of misplaced semicolons.</p>
-        <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
-            <Icon name="mdi:download" class="mr-2 inline-block" />
-            View portfolio
-        </Button>
-        </Hashtag>
-    </section>
+  <div class="bg-background text-foreground p-8">
+        <div class="max-w-4xl xl:max-w-full mx-auto grid grid-cols-1 xl:grid-cols-3 gap-8">
+            <section
+                class="flex flex-col font-mono"
+            >
+                <Hashtag id="freelance" title="Freelance">
+                    <p>Yes, the rumors are true. I'm currently available.</p>
+                    <p>Hire me while you can!<p>
+                <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
+                    <Icon name="mdi:download" class="mr-2 inline-block" />
+                    Download CV
+                </Button>
+                </Hashtag>
+            </section>
+
+            <section
+                class="space-y-8 font-mono"
+            >
+                <Hashtag id="remote" title="Remote">
+                    <p>My office is wherever there's a strong 4G signal.</p>
+                    <p>I'm a seasoned remote professional with very flexible working hours.</p>
+                </Hashtag>
+            </section>
+            <section class="space-y-8 font-mono">
+                <Hashtag id="developer" title="Developer">
+                    <p>Backend, frontend, platform engineering. I've done it all.</p>
+                    <p>We're talking decades of experience and a truly staggering number of misplaced semicolons.</p>
+                <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
+                    <Icon name="mdi:download" class="mr-2 inline-block" />
+                    View portfolio
+                </Button>
+                </Hashtag>
+            </section>
+        </div>
     </div>
-
-    <section class="bg-muted-background text-foreground space-y-8 p-8 font-mono">
+    <section class="bg-muted-background text-foreground p-8 font-mono">
         <div class="max-w-4xl mx-auto space-y-8">
             <Hashtag id="toolbox" title="Toolbox">
                 <p>
@@ -96,9 +98,9 @@ const header: HeaderConfig = {
             tabIndexStart={7}
             keys={[
                 { key: "Java", href: "/skills/java" },
-                { key: "Rust", href: "#" },
-                { key: "Cloud", href: "#" },
-                { key: "Kafka", href: "#" },
+                { key: "Rust", href: "/skills/rust" },
+                { key: "Cloud", href: "/skills/cloud" },
+                { key: "Kafka", href: "/skills/kafka" },
             ]}
             />
         </div>

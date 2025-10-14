@@ -6,7 +6,8 @@
     "paths": {
       "@cruxy/components": ["src/components/index.tsx"],
       "@cruxy/components/landing": ["src/components/landing/index.tsx"],
-      "@cruxy/layouts": ["src/layouts/index.tsx"]
+      "@cruxy/layouts": ["src/layouts/index.tsx"],
+      "@cruxy/layouts/*": ["src/layouts/*"]
     }
   }
 }

@@ -1,0 +1,27 @@
+---
+import { Layout } from "@cruxy/layouts";
+
+import Heading from '../components/mdx/Heading.astro';
+import Paragraph from '../components/mdx/Paragraph.astro';
+import List from '../components/mdx/List.astro';
+import ListItem from '../components/mdx/ListItem.astro';
+
+const { frontmatter } = Astro.props;
+
+// Export components for MDX - use component references directly
+export const components = {
+  h1: Heading,
+  h2: Heading,
+  h3: Heading,
+  h4: Heading,
+  h5: Heading,
+  h6: Heading,
+  p: Paragraph,
+  ul: List,
+  ol: List,
+  li: ListItem,
+};
+---
+<Layout>
+    <slot />
+</Layout>
