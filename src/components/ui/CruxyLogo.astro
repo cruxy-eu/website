@@ -1,13 +1,15 @@
 ---
+import type { HTMLAttributes } from "astro/types";
 import cruxyLogo from "../../assets/cruxy-logo.svg";
 
 import { Image } from "astro:assets";
 
-interface Props {
+interface Props extends HTMLAttributes<"img">{
     size?: number;
 }
 
 const { size = 24, ...attrs } = Astro.props;
+
 ---
 
 <Image src={cruxyLogo} alt="Cruxy Logo" width={size} height={size} {...attrs} />

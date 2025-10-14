@@ -1,6 +1,6 @@
 ---
 import { Layout } from "@cruxy/layouts";
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 import {
   Cover,
   Spacer,
@@ -15,24 +15,17 @@ import {
   Hero,
   Typewriter,
   Keyboard,
+  Hashtag,
 } from "@cruxy/components/landing";
+
 const header: HeaderConfig = {
   instantSticky: true,
 };
 
-import ecImg from "../assets/ec_full.webp";
-import Hashtag from "../components/landing/Hashtag.astro";
-
-const offers = [
-  "Full-Stack Development",
-  "Cloud & DevOps",
-  "Big Picture Thinking",
-  "Technical Writing",
-];
 ---
 
 <Layout header={header}>
-  <section class="bg-grid lines bg-side-fade">
+  <section class="bg-grid lines bg-side-fade relative">
     <Hero>
       <Spacer size="header" />
       <FreelanceRemoteDeveloper />
@@ -56,28 +49,58 @@ const offers = [
     <Definition />
   </section>
 
-  <section class="flex flex-col bg-background font-mono space-y-8 p-8 text-foreground">
-    <Hashtag title="Freelance" subtitle="We are available for hire!" />
-    <Button variant="primary" class="inline-flex w-fit items-center">
-      <Icon name="mdi:download" class="inline-block mr-2" />
-      Download CV
-    </Button>
-  </section>
-  <section class="bg-muted-background font-mono space-y-8 p-8 text-foreground">
-    <Hashtag title="Remote" subtitle="Wherever you are located, we are available!" />
-  </section>
-  <section class="bg-background font-mono space-y-8 p-8 text-foreground">
-    <Hashtag title="Developer" subtitle="Whether it is backend, frontend or platform engineering, we got you!" />
-  </section>
+  <div class="grid grid-cols-1 xl:grid-cols-3 bg-background text-foreground max-w-4xl xl:max-w-full mx-auto gap-8 py-8 xl:px-8">
+    <section
+        class="flex flex-col font-mono"
+    >
+        <Hashtag id="freelance" title="Freelance">
+            <p>Yes, the rumors are true. I'm currently available.</p>
+            <p>Hire me while you can!<p>
+        <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
+            <Icon name="mdi:download" class="mr-2 inline-block" />
+            Download CV
+        </Button>
+        </Hashtag>
+    </section>
 
-  <section class="bg-muted-background font-mono space-y-8 p-8 text-foreground">
-    <Hashtag title="Toolbox" subtitle="These are some of the things we specialize in." />
-    <Keyboard keys={[
-      { "key": "Java", href: "#"},
-      { "key": "Rust", href: "#"},
-      { "key": "Cloud", href: "#"},
-      { "key": "Kafka", href: "#"},
-    ]} />
-  </section>
+    <section
+        class="space-y-8 font-mono"
+    >
+        <Hashtag id="remote" title="Remote">
+            <p>My office is wherever there's a strong 4G signal.</p>
+            <p>I'm a seasoned remote professional with very flexible working hours.</p>
+        </Hashtag>
+    </section>
+    <section class="space-y-8 font-mono">
+        <Hashtag id="developer" title="Developer">
+            <p>Backend, frontend, platform engineering. I've done it all.</p>
+            <p>We're talking decades of experience and a truly staggering number of misplaced semicolons.</p>
+        <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
+            <Icon name="mdi:download" class="mr-2 inline-block" />
+            View portfolio
+        </Button>
+        </Hashtag>
+    </section>
+    </div>
 
+    <section class="bg-muted-background text-foreground space-y-8 p-8 font-mono">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <Hashtag id="toolbox" title="Toolbox">
+                <p>
+                    I'm fluent across the modern tech stack, from low-level programming in <span class="font-bold">Rust</span> to
+                    <span class="font-bold">cloud-native</span> systems with <span class="font-bold">Kubernetes</span> and <span class="font-bold">Kafka</span>.
+                </p>
+            </Hashtag>
+
+            <Keyboard
+            tabIndexStart={7}
+            keys={[
+                { key: "Java", href: "/skills/java" },
+                { key: "Rust", href: "#" },
+                { key: "Cloud", href: "#" },
+                { key: "Kafka", href: "#" },
+            ]}
+            />
+        </div>
+    </section>
 </Layout>

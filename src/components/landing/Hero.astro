@@ -19,8 +19,8 @@ const { class: className, ...attrs } = Astro.props;
   }
 
   .radial::after {
-    --radial-color-1: oklch(var(--cruxy--color--orange-muted) / 30%);
-    --radial-color-2: oklch(var(--cruxy--color--purple-muted) / 30%);
+    --radial-color-1: oklch(from var(--cruxy--color--orange-muted) l c h / 30%);
+    --radial-color-2: oklch(from var(--cruxy--color--purple-muted) l c h / 30%);
     content: "";
     position: absolute;
     bottom: 50%;

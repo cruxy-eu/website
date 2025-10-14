@@ -1,0 +1,21 @@
+---
+
+import type { HTMLAttributes } from "astro/types";
+import { Hashtag } from "@cruxy/components/landing";
+
+interface Props extends HTMLAttributes<"section"> {
+  id?: string;
+  title: string;
+  class?: string;
+}
+
+const { title, class: className, ...attrs } = Astro.props as Props;
+
+---
+<section class:list={["space-y-8 p-8 font-mono", className]} {...attrs}>
+    <div class="max-w-4xl mx-auto space-y-8">
+        <Hashtag id="toolbox" title={title}>
+            <slot />
+      </Hashtag>
+  </div>
+</section>

@@ -7,3 +7,4 @@ export { default as Spacer } from "./ui/Spacer.astro";
 export { default as Skewed } from "./ui/Skewed.astro";
 export { default as Badge } from "./ui/Badge.astro";
 export { default as Button } from "./ui/Button.astro";
+export { default as Section } from "./ui/Section.astro";

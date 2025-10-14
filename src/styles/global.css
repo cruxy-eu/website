@@ -100,7 +100,7 @@
 :root[data-theme="light"],
 .theme-light {
   --background: var(--cruxy--color--white);
-  --muted-background: oklch(95% 0 0);
+  --muted-background: oklch(90% 0 0);
   --foreground: var(--cruxy--color--black);
   --muted-foreground: oklch(30% 0 0);
   --anchor: var(--cruxy--color--orange);
