@@ -1,0 +1,47 @@
+---
+import { HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"a"> {
+    class?: string;
+    href?: string;
+}
+
+const {
+    class: className,
+    href = "#",
+    ...attrs
+} = Astro.props as Props;
+
+const base: URL = Astro.site ? new URL(Astro.site) : new URL("http://localhost");
+
+const external = href ? (() => {
+    try {
+        const url = new URL(href, base);
+        return url.origin !== base.origin;
+    } catch {
+        return false;
+    }
+})() : false;
+
+const target = external ? "_blank" : "self";
+
+const baseStyle = "underline underline-offset-4 hover:text-primary transition hover:cursor-pointer"
+---
+<a class:list={[baseStyle, className]} href={href} target={target}  {...attrs}>
+    <slot />{ external ? (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="inline-block ml-1 w-4 h-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+            />
+        </svg>
+    ) : null }
+</a>

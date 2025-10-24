@@ -10,7 +10,7 @@ const { level = 1, class: className, ...attrs } = Astro.props as Props;
 
 const HeadingElement = `h${level}` as const;
 ---
-<HeadingElement class:list={["px-8 font-bold max-w-4xl mx-auto text-4xl", className]} {...attrs}>
+<HeadingElement class:list={["px-8 pb-4 font-bold max-w-4xl mx-auto text-4xl", className]} {...attrs}>
     <slot />
 </HeadingElement>
 
@@ -43,7 +43,7 @@ h6::before {
     content: "###### ";
 }
 
-@media (min-width: 896px) {
+@media (min-width: 1024px) {
     h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
         position: absolute;
         right: 100%;

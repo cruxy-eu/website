@@ -4,6 +4,8 @@ import H3 from "./H3.astro";
 import Paragraph from "./Paragraph.astro";
 import List from "./List.astro";
 import ListItem from "./ListItem.astro";
+import Anchor from "./Anchor.astro";
+import Code from "./Code.astro";
 
 export const components = {
   h1: H1,
@@ -13,4 +15,6 @@ export const components = {
   ul: List,
   ol: List,
   li: ListItem,
+  a: Anchor,
+  code: Code,
 };
