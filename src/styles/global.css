@@ -1,6 +1,7 @@
 @layer reset;
 
 @import "tailwindcss";
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer general-styling, containers, effects, utilities;
 
