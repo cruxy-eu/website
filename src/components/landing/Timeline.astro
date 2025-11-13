@@ -1,0 +1,63 @@
+---
+import { getCollection, render } from 'astro:content';
+import { MaskedIcon } from "@cruxy/components";
+import { Icon } from "astro-icon/components";
+
+// Get all timeline entries
+const collection = await getCollection('timeline');
+
+// Render all items upfront
+const rendered = await Promise.all(
+    collection.map(async (item) => {
+        const { Content } = await render(item);
+        const IconComponent = item.data.icon?.startsWith("mdi:") ? Icon : MaskedIcon;
+        return {
+            data: item.data,
+            Content,
+            IconComponent
+        };
+    })
+)
+
+const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
+---
+
+<div class="relative">
+    <!-- Timeline line -->
+    <div class="absolute left-6 top-0 bottom-0 w-0.5 bg-primary"></div>
+    <div class="space-y-12">
+    {
+        timeline.map((item) => (
+            <div class="relative flex items-start gap-6">
+                <!-- Timeline dot and icon -->
+                <div class="relative z-10 flex-shrink-0">
+                    <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                        <item.IconComponent name={item.data.icon} class="w-12 h-12 text-background" size="32px"/>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="flex-1 min-w-0 pb-8 pt-2">
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
+                        <h3 class="text-xl font-bold text-foreground">{item.data.entity}</h3>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary text-background font-semibold">
+                            {item.data.year}
+                        </span>
+                    </div>
+                    <div class="text-muted-foreground leading-relaxed">
+                        <item.Content />
+                    </div>
+                    {item.data.tags && item.data.tags.length > 0 && (
+                        <div class="flex flex-wrap gap-2 mt-3">
+                            {item.data.tags.map((tag) => (
+                                <span class="inline-flex items-center rounded-md bg-orange-400/10 px-2 py-1 text-xs font-medium text-orange-500 inset-ring inset-ring-orange-400/20">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        ))
+    }
+    </div>
+</div>

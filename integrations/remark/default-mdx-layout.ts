@@ -1,0 +1,38 @@
+import { minimatch } from "minimatch";
+
+interface Options {
+  excluded?: string[];
+  defaultLayout: string;
+}
+
+export default function defaultMdxLayout(options: Options) {
+  // exclude files using glob patterns
+  const excluded = options.excluded || [];
+
+  return function (_, file) {
+    const cwd = file.cwd;
+    if (!cwd) {
+      console.warn("File has no cwd, skipping default layout assignment.");
+    }
+    const filePath = file.history[0].replace(cwd + "/", "");
+    console.log("Processing file:", filePath);
+
+    const shouldExclude = excluded.some((pattern) =>
+      minimatch(filePath, pattern),
+    );
+    // Skip if file matches exclusion pattern
+    if (shouldExclude) {
+      return;
+    }
+    console.log("Setting default layout for file:", filePath);
+    console.log(
+      "Current layout:",
+      file.data.astro.frontmatter.layout,
+      "-> Default layout:",
+      options.defaultLayout,
+    );
+
+    file.data.astro.frontmatter.layout =
+      file.data.astro.frontmatter.layout || options.defaultLayout;
+  };
+}

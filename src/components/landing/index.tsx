@@ -4,3 +4,4 @@ export { default as Hero } from "./Hero.astro";
 export { default as Typewriter } from "./Typewriter.astro";
 export { default as Keyboard } from "./Keyboard.astro";
 export { default as Hashtag } from "./Hashtag.astro";
+export { default as Timeline } from "./Timeline.astro";

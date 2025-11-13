@@ -8,3 +8,8 @@ export { default as Skewed } from "./ui/Skewed.astro";
 export { default as Badge } from "./ui/Badge.astro";
 export { default as Button } from "./ui/Button.astro";
 export { default as Section } from "./ui/Section.astro";
+export { default as MaskedIcon } from "./ui/MaskedIcon.astro";
+export { default as H1 } from "./mdx/H1.astro";
+export { default as H2 } from "./mdx/H2.astro";
+export { default as H3 } from "./mdx/H3.astro";
+export { default as Paragraph } from "./mdx/Paragraph.astro";

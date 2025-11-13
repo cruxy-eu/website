@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<"p"> {
 
 const { class: className, ...attrs } = Astro.props as Props;
 
-const baseStyle = "text-muted-foreground px-4 pb-4 text-md leading-relaxed max-w-4xl mx-auto";
+const baseStyle = "text-muted-foreground pb-4 text-md leading-relaxed max-w-4xl mx-auto";
 ---
 <p class:list={[baseStyle, className]} {...attrs}>
     <slot />

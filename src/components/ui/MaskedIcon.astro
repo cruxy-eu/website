@@ -1,0 +1,79 @@
+---
+/**
+ * A reusable component for displaying custom icons using mask images.
+ * Place your mask images in public/masks/ folder.
+ *
+ * @param {string} name - Name of the icon file (e.g., "ordina" for ordina.webp)
+ * @param {string} [size='1em'] - Size of the icon (any CSS unit)
+ * @param {string} [class] - Additional CSS classes
+ * @param {string} [alt] - Alternative text for accessibility
+ */
+
+interface Props {
+  name: string;
+  size?: string;
+  class?: string;
+  alt?: string;
+}
+
+const {
+  name,
+  size = '1em',
+  class: className = '',
+  alt
+} = Astro.props;
+
+// Icon registry - map icon names to their imports
+// const icons = import.meta.glob('../../../../../../public/masks/*.{png,jpg,jpeg,webp,svg}', {
+//   eager: true,
+//   import: 'default'
+// });
+const icons = import.meta.glob('/public/masks/*.{png,jpg,jpeg,webp,svg}', {
+  eager: true,
+  import: 'default'
+});
+
+const base = import.meta.env.BASE_URL || '/';
+
+// Convert the glob pattern to a simple name lookup
+const iconMap: Record<string, string> = {};
+for (const [path, module] of Object.entries(icons)) {
+  const filename = path.split('/').pop() || '';
+  const iconName = filename.replace(/\.(png|jpg|jpeg|webp|svg)$/, '') || '';
+  // const src = base + 'masks/' + filename;
+  const src = `url(${base}masks/${filename})`;
+  iconMap[iconName] = src;
+}
+
+// Construct the public URL with proper base handling
+const src = iconMap[name];
+if (!src) {
+  throw new Error(`MaskedIcon: Icon "${name}" not found in /public/masks/ directory.`);
+}
+const ariaLabel = alt || name;
+---
+
+<span
+  class={`masked-icon ${className}`}
+  role="img"
+  aria-label={ariaLabel}
+></span>
+
+<style define:vars={{ src, size }}>
+  .masked-icon {
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    background-color: currentColor;
+    mask-image: var(--src);
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: var(--src);
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+</style>

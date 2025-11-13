@@ -16,6 +16,7 @@ import {
   Typewriter,
   Keyboard,
   Hashtag,
+  Timeline,
 } from "@cruxy/components/landing";
 
 const header: HeaderConfig = {
@@ -90,7 +91,7 @@ const header: HeaderConfig = {
             <Hashtag id="toolbox" title="Toolbox">
                 <p>
                     I'm fluent across the modern tech stack, from low-level programming in <span class="font-bold">Rust</span> to
-                    <span class="font-bold">cloud-native</span> systems with <span class="font-bold">Kubernetes</span> and <span class="font-bold">Kafka</span>.
+                    <span class="font-bold">cloud-native</span> systems with <span class="font-bold">Java</span>, <span class="font-bold">Kubernetes</span> and <span class="font-bold">Kafka</span>.
                 </p>
             </Hashtag>
 
@@ -105,4 +106,15 @@ const header: HeaderConfig = {
             />
         </div>
     </section>
+
+    <section class="bg-background text-foreground p-8 font-mono">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <Hashtag id="timeline" title="Timeline">
+                <p>My journey through the tech industry, one commit at a time.</p>
+                <Spacer size="base" />
+                <Timeline />
+            </Hashtag>
+        </div>
+    </section>
+
 </Layout>
