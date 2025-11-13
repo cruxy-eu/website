@@ -10,7 +10,7 @@ interface HeaderConfig extends HTMLAttributes<"header"> {
 
 const { instantSticky = true } = Astro.props as HeaderConfig;
 
-const baseStyle = "font-sans text-4xl sticky w-full top-0 left-0 z-1000";
+const baseStyle = "font-mono text-4xl sticky w-full top-0 left-0 z-1000";
 
 const stickyStyle = instantSticky ? "instant-sticky" : "";
 ---

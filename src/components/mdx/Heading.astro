@@ -10,43 +10,54 @@ const { level = 1, class: className, ...attrs } = Astro.props as Props;
 
 const HeadingElement = `h${level}` as const;
 ---
-<HeadingElement class:list={["px-8 pb-4 font-bold max-w-4xl mx-auto text-4xl", className]} {...attrs}>
+<HeadingElement class:list={["pl-4 py-4 max-w-4xl mx-auto text-4xl text-foreground", className]} {...attrs}>
     <slot />
 </HeadingElement>
 
 <style>
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     position: relative;
+    transition: transform 0.3s var(--ease-in-out--half-circle)
+}
+
+h1 {
+    transform: translateX(2.5rem);
+}
+h2 {
+    transform: translateX(3.75rem);
+}
+h3 {
+    transform: translateX(5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    h1, h2, h3 {
+        transition: none;
+    }
+}
+
+h1::before,
+h2::before,
+h3::before {
+    position: absolute;
+    right: 100%;
 }
 
 h1::before {
-    content: "# ";
+    content: "#";
 }
 
 h2::before {
-    content: "## ";
+    content: "##";
 }
 
 h3::before {
-    content: "### ";
-}
-
-h4::before {
-    content: "#### ";
-}
-
-h5::before {
-    content: "##### ";
-}
-
-h6::before {
-    content: "###### ";
+    content: "###";
 }
 
 @media (min-width: 1024px) {
-    h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
-        position: absolute;
-        right: 100%;
+    h1, h2, h3 {
+        transform: translateX(0rem);
     }
 }
 </style>

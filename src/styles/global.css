@@ -3,7 +3,7 @@
 @import "tailwindcss";
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@layer general-styling, containers, effects, utilities;
+@layer general, containers, effects;
 
 :root {
   --cruxy--color--white: oklch(0.95 0 0);
@@ -13,47 +13,6 @@
 
   --cruxy--color--orange: oklch(69% 0.2 44);
   --cruxy--color--orange-muted: oklch(69% 0.17 28);
-  --cruxy--color--orange-base: 0.05;
-  --cruxy--color--orange-10: oklch(
-    from var(--cruxy--color--orange) 10%
-      calc(var(--cruxy--color--orange-base) + (sin(1 * pi) * c)) h
-  );
-  --cruxy--color--orange-20: oklch(
-    from var(--cruxy--color--orange) 20%
-      calc(var(--cruxy--color--orange-base) + (sin(0.9 * pi) * c)) h
-  );
-  --cruxy--color--orange-30: oklch(
-    from var(--cruxy--color--orange) 30%
-      calc(var(--cruxy--color--orange-base) + (sin(0.8 * pi) * c)) h
-  );
-  --cruxy--color--orange-40: oklch(
-    from var(--cruxy--color--orange) 40%
-      calc(var(--cruxy--color--orange-base) + (sin(0.7 * pi) * c)) h
-  );
-  --cruxy--color--orange-50: oklch(
-    from var(--cruxy--color--orange) 50%
-      calc(var(--cruxy--color--orange-base) + (sin(0.6 * pi) * c)) h
-  );
-  --cruxy--color--orange-60: oklch(
-    from var(--cruxy--color--orange) 60%
-      calc(var(--cruxy--color--orange-base) + (sin(0.5 * pi) * c)) h
-  );
-  --cruxy--color--orange-70: oklch(
-    from var(--cruxy--color--orange) 70%
-      calc(var(--cruxy--color--orange-base) + (sin(0.4 * pi) * c)) h
-  );
-  --cruxy--color--orange-80: oklch(
-    from var(--cruxy--color--orange) 80%
-      calc(var(--cruxy--color--orange-base) + (sin(0.3 * pi) * c)) h
-  );
-  --cruxy--color--orange-90: oklch(
-    from var(--cruxy--color--orange) 90%
-      calc(var(--cruxy--color--orange-base) + (sin(0.2 * pi) * c)) h
-  );
-  --cruxy--color--orange-100: oklch(
-    from var(--cruxy--color--orange) 100%
-      calc(var(--cruxy--color--orange-base) + (sin(0.1 * pi) * c)) h
-  );
 
   --cruxy--font--sans: "Montserrat", sans-serif;
   --cruxy--font--serif: "Brygada", serif;
@@ -74,13 +33,11 @@
   --cruxy--spacer--unit: 1.25rem;
   --cruxy--background--grid--size: 2.5rem;
 
-  --accent1: #ff6f61;
-  --accent2: #6c5ce7;
-  --accent3: #00cec9;
-
   --cruxy--effect--fade-up--initial-delay: 0.5s;
   --cruxy--effect--fade-up--interval: 0.3s;
   --cruxy--effect--fade-up--duration: 1s;
+
+  --ease-in-out--half-circle: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
 :root[data-theme="dark"],
@@ -93,8 +50,8 @@
   --muted-primary: oklch(from var(--primary) calc(l * 1.2) c h);
   --secondary: var(--cruxy--color--purple);
   --anchor: var(--cruxy--color--orange);
+  --muted-anchor: oklch(from var(--anchor) calc(l * 1.2) c h);
   --opaque: oklch(0 0 0);
-  --card: var(--muted-background);
   --glass: oklch(1 0 1);
 
   --cruxy--background--grid--color: oklch(1 0 0 / 0.05);
@@ -108,11 +65,11 @@
   --foreground: var(--cruxy--color--black);
   --muted-foreground: oklch(30% 0 0);
   --anchor: var(--cruxy--color--orange);
+  --muted-anchor: oklch(from var(--anchor) calc(l * 1.2) c h);
   --primary: var(--cruxy--color--orange);
   --muted-primary: oklch(from var(--primary) calc(l * 1.2) c h);
   --secondary: var(--cruxy--color--orange);
   --opaque: oklch(1 0 0);
-  --card: var(--cruxy--color--orange-100);
   --glass: oklch(1 0 1);
   --border: oklch(0 0 0);
 
@@ -154,7 +111,7 @@
   }
 }
 
-@layer general-styling {
+@layer general {
   html {
     color-scheme: dark light;
     line-height: 1.15;
@@ -167,17 +124,6 @@
   body {
     background-color: var(--background);
     color: var(--foreground);
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
-    line-height: 1.5;
-    font-style: normal;
   }
 
   main {
@@ -289,108 +235,99 @@
   }
 }
 
-@layer utilities {
-  .text-foreground {
-    color: var(--foreground);
-  }
+@utility text-foreground {
+  color: var(--foreground);
+}
 
-  .text-muted-foreground {
-    color: var(--muted-foreground);
-  }
+@utility text-muted-foreground {
+  color: var(--muted-foreground);
+}
 
-  .text-anchor {
+@utility text-background {
+  color: var(--background);
+}
+
+@utility text-muted-background {
+  color: var(--muted-background);
+}
+
+@utility text-anchor {
+  color: var(--muted-anchor);
+
+  @variant hover {
     color: var(--anchor);
-  }
-
-  .text-gradient {
-    background-image: linear-gradient(
-      135deg,
-      var(--cruxy--color--orange-muted),
-      var(--cruxy--color--purple-muted)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .bg-gradient {
-    background-image: linear-gradient(
-      135deg,
-      var(--cruxy--color--orange-muted),
-      var(--cruxy--color--purple-muted)
-    );
-  }
-
-  .bg-background {
-    background-color: var(--background);
-  }
-
-  .bg-muted-background {
-    background-color: var(--muted-background);
-  }
-
-  .bg-card {
-    background-color: var(--card);
-  }
-
-  .bg-primary {
-    background-color: var(--primary);
-  }
-
-  .bg-muted-primary {
-    background-color: var(--muted-primary);
-  }
-
-  .hover\:bg-muted-primary:hover {
-    background-color: var(--muted-primary);
-  }
-
-  .bg-secondary {
-    background-color: var(--secondary);
-  }
-
-  .font-serif {
-    font-family: var(--cruxy--font--serif);
-  }
-
-  .font-sans {
-    font-family: var(--cruxy--font--sans);
-  }
-
-  .font-mono {
-    font-family: var(--cruxy--font--mono);
-  }
-
-  .bg-side-fade {
-    mask-image: linear-gradient(
-      to right,
-      transparent 0%,
-      black 5%,
-      black 95%,
-      transparent 100%
-    );
-  }
-
-  .bg-opaque {
-    background-color: var(--opaque);
-  }
-
-  .bg-mask {
-    background-color: var(--background);
-    mask-image: linear-gradient(to bottom, white -70%, transparent 75%);
-  }
-
-  .border-border {
-    border-color: var(--border) / 5%;
-  }
-
-  .hover\:text-anchor {
     -webkit-transition: all 0.25s ease-in-out;
     -o-transition: all 0.25s ease-in-out;
     transition: all 0.25s ease-in-out;
   }
+}
 
-  .hover\:text-anchor:hover {
-    color: var(--anchor);
-  }
+@utility text-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--cruxy--color--orange-muted),
+    var(--cruxy--color--purple-muted)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-background {
+  background-color: var(--background);
+}
+
+@utility bg-muted-background {
+  background-color: var(--muted-background);
+}
+
+@utility bg-card {
+  background-color: var(--card);
+}
+
+@utility bg-primary {
+  background-color: var(--primary);
+}
+
+@utility bg-muted-primary {
+  background-color: var(--muted-primary);
+}
+
+@utility bg-secondary {
+  background-color: var(--secondary);
+}
+
+@utility font-serif {
+  font-family: var(--cruxy--font--serif);
+}
+
+@utility font-sans {
+  font-family: var(--cruxy--font--sans);
+}
+
+@utility font-mono {
+  font-family: var(--cruxy--font--mono);
+}
+
+@utility bg-side-fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 5%,
+    black 95%,
+    transparent 100%
+  );
+}
+
+@utility bg-opaque {
+  background-color: var(--opaque);
+}
+
+@utility bg-mask {
+  background-color: var(--background);
+  mask-image: linear-gradient(to bottom, white -70%, transparent 75%);
+}
+
+@utility border-border {
+  border-color: var(--border) / 5%;
 }

@@ -6,7 +6,6 @@ interface Props {
 const { class: className, ...attrs } = Astro.props;
 ---
 
-<li class:list={["pl-8 pb-4", className]} {...attrs}>
-  <span class="text-gray-400 select-none mr-4">→</span>
+<li class:list={["pb-4", className]} {...attrs}>
   <slot />
 </li>

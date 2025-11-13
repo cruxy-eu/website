@@ -25,13 +25,12 @@ const external = href ? (() => {
 
 const target = external ? "_blank" : "self";
 
-const baseStyle = "underline underline-offset-4 hover:text-primary transition hover:cursor-pointer"
+const baseStyle = "underline underline-offset-4 text-anchor text-nowrap"
 ---
 <a class:list={[baseStyle, className]} href={href} target={target}  {...attrs}>
-    <slot />{ external ? (
-        <svg
+    <slot />{ external ? (<svg
             xmlns="http://www.w3.org/2000/svg"
-            class="inline-block ml-1 w-4 h-4"
+            class="inline-block ml-1 w-4 h-4 text-muted-foreground"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -43,5 +42,4 @@ const baseStyle = "underline underline-offset-4 hover:text-primary transition ho
                 d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
             />
         </svg>
-    ) : null }
-</a>
+    ) : null }</a>
