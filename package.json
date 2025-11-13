@@ -19,7 +19,7 @@
     "fonts:subset": "node scripts/subset-fonts.js"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.7",
+    "@astrojs/mdx": "^4.3.10",
     "@astrojs/sitemap": "^3.6.0",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
