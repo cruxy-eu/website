@@ -9,9 +9,6 @@ CHARS=' -,:!?.()@*/&#>|0123456789aAbBcCdDeEfFghiIJkKlLmMnNoOpPqrRsStTuUvVwWxyYz'
 CHAR_FILE="./dist/fonts/characters.txt"
 echo "$CHARS" >> "$CHAR_FILE"
 
-echo "🔤 Starting font subsetting for production..."
-echo ""
-
 # Check if dist exists
 if [ ! -d "$DIST_DIR" ]; then
     echo "❌ dist/ directory not found. Build the site first!"
@@ -36,7 +33,6 @@ fi
 # Count fonts
 FONT_COUNT=$(echo "$FONT_FILES" | wc -l | xargs)
 echo "📦 Found $FONT_COUNT font(s) to subset"
-echo ""
 
 # Process each font
 while read -r font_path; do
@@ -81,8 +77,6 @@ while read -r font_path; do
         echo "  ❌ Failed to create subset"
     fi
 
-    echo ""
-
 done <<< "$FONT_FILES"
 
 # Clean up temp file
@@ -97,9 +91,7 @@ fi
 #     echo "  🗑️  Removed original font files from dist"
 # fi
 
-echo ""
 echo "✨ Font subsetting complete!"
-echo ""
 
 # Show final results
 if [ -d "$DIST_FONTS_DIR" ]; then
