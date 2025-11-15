@@ -47,10 +47,6 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
         .line {
             transition: none;
             transform: none;
-        }
-
-        .timeline-item,
-        .line {
             opacity: 1;
         }
     }
@@ -106,7 +102,7 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
         <!-- Timeline dot and icon -->
         <div class="relative z-10 flex-shrink-0">
             <div class="w-12 h-12 bg-primary/20 border-2 border-primary border-dashed rounded-full flex items-center justify-center">
-                <Icon name="mdi:plus" class="w-6 h-6 text-primary"/>
+                <Icon name="mdi:help-circle-outline" class="w-6 h-6 text-primary"/>
             </div>
         </div>
         <!-- Content -->
@@ -117,11 +113,11 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
                         <span>Your Project</span>
                     </h3>
                     <div class="font-medium text-sm italic text-muted-foreground mt-1">
-                        // Remote
+                        Let's work together
                     </div>
                 </div>
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-sm bg-primary/20 text-primary font-semibold whitespace-nowrap flex-shrink-0">
-
+                    Next?
                 </span>
             </div>
             <div class="text-muted-foreground leading-relaxed mb-4">
@@ -139,55 +135,47 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
 <script>
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
+    // Skip all JavaScript animations if user prefers reduced motion
+    if (prefersReducedMotion) {
+        // CSS will handle making everything visible
+    } else {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-    const items = Array.from(document.querySelectorAll('.timeline-item'));
-    let animationQueue = [];
-    let isAnimating = false;
+        let animationQueue = [];
+        let isAnimating = false;
 
-    const animateNext = () => {
-        if (animationQueue.length === 0) {
-            isAnimating = false;
-            return;
-        }
-
-        isAnimating = true;
-        const item = animationQueue.shift();
-
-        item.classList.add('visible');
-
-        // Make the PREVIOUS item's line visible
-        const prevItem = item.previousElementSibling;
-        if (prevItem && prevItem.classList.contains('timeline-item')) {
-            const prevLine = prevItem.querySelector('.line');
-            if (prevLine) {
-                prevLine.classList.add('visible');
+        const animateNext = () => {
+            if (animationQueue.length === 0) {
+                isAnimating = false;
+                return;
             }
-        }
 
-        // Wait for animation to complete before next item (skip delay if reduced motion)
-        setTimeout(animateNext, prefersReducedMotion ? 0 : 300);
-    };
+            isAnimating = true;
+            const item = animationQueue.shift();
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const item = entry.target;
+            item.classList.add('visible');
 
-                if (prefersReducedMotion) {
-                    // No animation queue - show immediately
-                    item.classList.add('visible');
-                    const prevItem = item.previousElementSibling;
-                    if (prevItem && prevItem.classList.contains('timeline-item')) {
-                        const prevLine = prevItem.querySelector('.line');
-                        if (prevLine) {
-                            prevLine.classList.add('visible');
-                        }
-                    }
-                } else {
+            // Make the PREVIOUS item's line visible
+            const prevItem = item.previousElementSibling;
+            if (prevItem && prevItem.classList.contains('timeline-item')) {
+                const prevLine = prevItem.querySelector('.line');
+                if (prevLine) {
+                    prevLine.classList.add('visible');
+                }
+            }
+
+            // Wait for animation to complete before next item
+            setTimeout(animateNext, 300);
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const item = entry.target;
+
                     // Add to queue if not already visible and not in queue
                     if (!item.classList.contains('visible') && !animationQueue.includes(item)) {
                         animationQueue.push(item);
@@ -197,22 +185,22 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
                             animateNext();
                         }
                     }
+
+                    observer.unobserve(entry.target);
                 }
+            });
+        }, observerOptions);
 
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.timeline-item').forEach(item => {
-        observer.observe(item);
-    });
-
-    document.addEventListener("astro:after-swap", () => {
-        animationQueue = [];
-        isAnimating = false;
         document.querySelectorAll('.timeline-item').forEach(item => {
             observer.observe(item);
         });
-    });
+
+        document.addEventListener("astro:after-swap", () => {
+            animationQueue = [];
+            isAnimating = false;
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+    }
 </script>
