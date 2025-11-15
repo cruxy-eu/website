@@ -1,7 +1,6 @@
 ---
 import { Layout, LayoutProps } from "@cruxy/layouts";
 import { Cover, Skewed } from "@cruxy/components";
-import ecImg from "../assets/ec_full.webp";
 const layout: LayoutProps = {
   header: {
     instantSticky: true,
@@ -10,44 +9,5 @@ const layout: LayoutProps = {
 ---
 
 <Layout {...layout}>
-  <Cover img={ecImg} cover="fit" overlay="dark">
-    <section
-      class="b mx-auto flex h-screen flex-col space-y-6 rounded-lg p-12 font-mono text-2xl"
-    >
-      <Skewed class="max-w-4xl" backgroundImage={ecImg}>
-        <section>
-          <p>
-            We provide digital services to clients around the world,
-            specializing in web development, design, and digital marketing.
-          </p>
-        </section>
-      </Skewed>
-      <Skewed class="max-w-4xl pt-4" backgroundImage={ecImg}>
-        <section>
-          <p>
-            We provide digital services to clients around the world,
-            specializing in web development, design, and digital marketing.
-          </p>
-        </section>
-      </Skewed>
-    </section>
-  </Cover>
-  <Cover img={ecImg} cover="fit">
-    <Skewed class="max-w-4xl" backgroundImage={ecImg}>
-      <section>
-        <p>
-          We provide digital services to clients around the world, specializing
-          in web development, design, and digital marketing.
-        </p>
-      </section>
-    </Skewed>
-    <Skewed class="max-w-4xl pt-4" backgroundImage={ecImg}>
-      <section>
-        <p>
-          We provide digital services to clients around the world, specializing
-          in web development, design, and digital marketing.
-        </p>
-      </section>
-    </Skewed>
-  </Cover>
+
 </Layout>

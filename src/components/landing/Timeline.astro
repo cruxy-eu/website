@@ -22,7 +22,7 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
     .timeline-item {
         opacity: 0;
         transform: translateY(30px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
     }
 
     .timeline-item.visible {
@@ -102,12 +102,12 @@ const timeline = rendered.sort((a, b) => a.data.order - b.data.order);
         <!-- Timeline dot and icon -->
         <div class="relative z-10 flex-shrink-0">
             <div class="w-12 h-12 bg-primary/20 border-2 border-primary border-dashed rounded-full flex items-center justify-center">
-                <Icon name="mdi:help-circle-outline" class="w-6 h-6 text-primary"/>
+                <Icon name="mdi:plus" class="w-6 h-6 text-primary"/>
             </div>
         </div>
         <!-- Content -->
         <div class="flex-1 min-w-0 pb-8 pt-2">
-            <div class="flex items-start justify-between gap-2 sm:gap-4 mb-2">
+            <div class="flex items-start justify-between mb-2">
                 <div class="flex-1 min-w-0">
                     <h3 class="text-xl font-bold text-foreground overflow-hidden text-ellipsis">
                         <span>Your Project</span>

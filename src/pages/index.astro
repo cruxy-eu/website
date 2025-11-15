@@ -2,11 +2,7 @@
 import { Layout } from "@cruxy/layouts";
 import { Icon } from "astro-icon/components";
 import {
-  Cover,
   Spacer,
-  HeaderConfig,
-  Skewed,
-  Badge,
   Button,
 } from "@cruxy/components";
 import {
@@ -53,16 +49,14 @@ const header: HeaderConfig = {
 
   <div class="bg-background text-foreground p-8">
         <div class="max-w-4xl xl:max-w-full mx-auto grid grid-cols-1 xl:grid-cols-3 gap-8">
-            <section
-                class="flex flex-col font-mono"
-            >
+            <section class="flex flex-col font-mono">
                 <Hashtag id="freelance" title="Freelance">
                     <p>Yes, the rumors are true. I'm currently available.</p>
                     <p>Hire me while you can!<p>
-                <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
-                    <Icon name="mdi:download" class="mr-2 inline-block" />
-                    Download CV
-                </Button>
+                    <Button variant="primary" class="inline-flex w-fit items-center xl:self-center mt-4">
+                        <Icon name="mdi:download" class="mr-2 inline-block" />
+                        Download CV
+                    </Button>
                 </Hashtag>
             </section>
 

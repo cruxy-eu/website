@@ -1,21 +1,32 @@
 ---
 title: Rust
 description: My experience with the Rust programming language.
+layout: ../../layouts/MDXLayout.astro
 ---
 import { components } from '../../components/mdx/components.js';
 export { components };
 
 # Rust
-
+ddd
 In the last few years,
-I have switched annotations from Java to lifetimes in Rust.
+I have switched annotations from [Java](/skills/java) to lifetimes in Rust.
 This has been a great experience,
-and this allowed me to write more reliable code.
+and this allowed me to write more reliable code with less boilerplate.
 
 ## Experience
 
-I have been using Rust for about 3 years now,
-and I have used it in various projects:
+So far, I have used Rust for building:
 
-- [Kannika](https://docs.kannika.io)
-- [SAME](https://github.com/cymo-eu/same)
+- Web services using [Actix Web](https://actix.rs/) or [Axum](https://docs.rs/axum/).
+- Asynchronous applications with [tokio](https://tokio.rs/) or [monoio](https://github.com/bytedance/monoio) runtimes.
+- CLI tools using [clap](https://github.com/clap-rs/clap).
+- Kubernetes operators using the [kube-rs](https://kube.rs/) library.
+- Cross-platform applications with [Leptos](https://leptos.dev/), [Tauri](https://tauri.app/) and [Dioxus](https://dioxuslabs.com/).
+
+## Projects
+
+Here are some of the Rust projects I have worked on:
+
+- [Kannika Armory](https://docs.kannika.io/): A Kubernetes-native platform for backing up and restoring Kafka clusters.
+- [SAME](https//github.com/cymo-eu/same): A tool for mapping schemas between different Kafka clusters.
+- [kbridge](https://github.com/cymo-eu/kannika-bridge): A tool for mapping offsets between different Kafka clusters.

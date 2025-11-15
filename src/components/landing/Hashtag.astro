@@ -3,13 +3,14 @@ interface Props {
     id: string;
     title: string;
 }
-
 const { id, title }: Props = Astro.props;
 ---
-<div id={id} class="gap-4 p-x-8 inline-grid grid-auto-rows-min grid-cols-[auto_1fr] items-baseline">
-    <span class="text-4xl">#</span>
-    <span class="text-4xl">{title}</span>
-    <div class="col-start-2 text-lg text-muted-foreground">
+<div id={id} class="gap-4 p-x-8 inline-grid grid-auto-rows-min max-md:grid-cols-1 md:grid-cols-[auto_1fr] items-baseline">
+    <div class="max-md:col-span-1 md:col-span-2 md:grid md:grid-cols-subgrid">
+        <span class="text-4xl">#</span>
+        <span class="text-4xl">{title}</span>
+    </div>
+    <div class="max-md:col-span-1 md:col-start-2 text-lg text-muted-foreground">
         <slot />
     </div>
 </div>
