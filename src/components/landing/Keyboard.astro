@@ -97,8 +97,15 @@ const reversedKeys = [...keys].reverse();
     });
   }, observerOptions);
 
+  const observe = () => {
+    document.querySelectorAll(".keyboard").forEach((el) => {
+      observer.observe(el);
+    });
+  };
+
   // Observe the container
-  document.querySelectorAll(".keyboard").forEach((el) => {
-    observer.observe(el);
+  document.addEventListener("astro:after-swap", () => {
+      observe();
   });
+  observe();
 </script>
