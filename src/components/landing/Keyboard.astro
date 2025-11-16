@@ -1,13 +1,12 @@
 ---
 interface Props {
   keys: Key[];
-  tabIndexStart: number;
 }
 interface Key {
   key: string;
   href: string;
 }
-const { keys, tabIndexStart }: Props = Astro.props;
+const { keys }: Props = Astro.props;
 
 const total = keys.length;
 
@@ -29,7 +28,6 @@ const reversedKeys = [...keys].reverse();
           <a
             href={key.href}
             class="flex items-center justify-center gap-2"
-            tabindex={tabIndexStart + total - i}
           >
             {key.key}
             <span class="text-2xl opacity-60">→</span>
