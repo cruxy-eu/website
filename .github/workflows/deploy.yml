@@ -51,5 +51,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy YOUR_DIST_FOLDER --project-name=${{ secrets.CLOUDFLARE_PROJECT_NAME }}
+          command: pages deploy YOUR_DIST_FOLDER --project-name=${{ env.CLOUDFLARE_PROJECT_NAME }}
           directory: ./dist
