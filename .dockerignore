@@ -1,0 +1,7 @@
+.astro
+.idea
+dist
+node_modules
+.dockerignore
+.editorconfig
+.gitignore
