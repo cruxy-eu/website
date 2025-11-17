@@ -9,7 +9,7 @@ export default function defaultMdxLayout(options: Options) {
   // exclude files using glob patterns
   const excluded = options.excluded || [];
 
-  return function (x, file) {
+  return function (_, file) {
     if (!file) {
       console.warn("No file provided, skipping default layout assignment.");
       return;
