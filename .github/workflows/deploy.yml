@@ -2,11 +2,11 @@ name: Deploy website
 
 on:
   push:
-    branches: [main] # Deploy only on main pushes
+    branches: [main]
   workflow_dispatch: # Allow manual trigger
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
