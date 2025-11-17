@@ -3,11 +3,16 @@ name: Deploy website
 on:
   push:
     branches: [main]
+  pull_request: # Deploy previews
   workflow_dispatch: # Allow manual trigger
+
+permissions:
+  pull-requests: write # Allow posting the preview url
 
 jobs:
   deploy:
-    environment: prod
+    name: Deploy to Cloudflare
+    environment: ${{ (github.event_name == 'push' && github.ref == 'refs/heads/main') && 'prod' || 'preview' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
