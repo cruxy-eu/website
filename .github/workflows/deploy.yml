@@ -54,10 +54,12 @@ jobs:
           command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }}
 
       - name: Post preview url
+        if: github.event_name == 'pull_request'
         uses: ghcr.io/cruxy-eu/beta-post-comment@v0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          comment: |
+          pr: ${{ github.event.pull_request.number }}
+          body: |
             ### 🧱 Ready to send?
 
             We made it past the crux.
