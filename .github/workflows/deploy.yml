@@ -55,7 +55,7 @@ jobs:
 
       - name: Post preview url
         if: github.event_name == 'pull_request'
-        uses: docker://ghcr.io/cruxy-eu/beta-post-comment@v0
+        uses: docker://ghcr.io/cruxy-eu/beta-post-comment:0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           pr: ${{ github.event.pull_request.number }}
