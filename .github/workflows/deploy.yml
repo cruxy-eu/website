@@ -52,3 +52,14 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy ./dist --project-name=${{ vars.CLOUDFLARE_PROJECT_NAME }} --branch=${{ github.head_ref }}
+
+      - name: Post preview url
+        uses: ghcr.io/cruxy-eu/beta-post-comment@v0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment: |
+            ### 🧱 Ready to send?
+
+            We made it past the crux.
+
+            **Inspect the route:** {{ steps.deploy.outputs.pages-deployment-alias-url }}
