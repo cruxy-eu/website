@@ -19,14 +19,14 @@
     "fonts:subset": "node scripts/subset-fonts.js"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.12",
+    "@astrojs/mdx": "^4.3.13",
     "@astrojs/sitemap": "^3.6.0",
     "@iconify-json/mdi": "^1.2.3",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.14.1",
+    "astro": "^5.16.6",
     "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.1.17",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "minimatch": "^10.1.1",
